@@ -30,6 +30,7 @@ import configuration from './config/configuration';
     //   context: ({ req, res }) => ({ req, res }),
     //   sortSchema: true,
     // }),
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
