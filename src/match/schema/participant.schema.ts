@@ -18,8 +18,9 @@ const Types = mongoose.Schema.Types;
 export class Participant {
   @Prop({ type: Types.String })
   puuid: string;
+
   @Prop({ type: Types.Number })
-  participantsId: number;
+  participantId: number;
 
   @Prop({ type: Types.Number })
   teamId: number;
