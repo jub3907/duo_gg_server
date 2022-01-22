@@ -1,0 +1,17 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Mutation {
+  testUpdateMatch(matchId: String!): String!
+  testUpdateSummoner(name: String!): String!
+  updateChampionData: Boolean!
+  updateIconData: Boolean!
+  updateItemData: Boolean!
+  updateRuneData: Boolean!
+  updateSummonerData: Boolean!
+}
+
+type Query {
+  getSummoner(matchId: String!): String!
+}

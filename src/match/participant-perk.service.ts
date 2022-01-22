@@ -1,4 +1,18 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ParticipantPerkService {}
+export class ParticipantPerkService {
+  parsePerks(perks: JSON) {
+    return {
+      flex: perks['statPerks']['flex'],
+      defense: perks['statPerks']['defense'],
+      offense: perks['statPerks']['offense'],
+      primaryStyle: perks['styles'][0]['style'],
+      primarySelections: perks['styles'][0]['selections'].map(
+        ({ perk }) => perk,
+      ),
+      subStyle: perks['styles'][1]['style'],
+      subSelections: perks['styles'][1]['selections'].map(({ perk }) => perk),
+    };
+  }
+}
