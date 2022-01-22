@@ -14,6 +14,7 @@ export class ApiService {
   }
 
   async getApiResult(type: ApiType, parameter: string = '') {
+    console.log(this.getUri(type, parameter));
     return await axios.get(this.getUri(type, parameter));
   }
 
@@ -21,9 +22,9 @@ export class ApiService {
     return (
       ApiObject[type].path +
       encodeURI(parameter) +
+      ApiObject[type].behind +
       '?api_key=' +
-      this.config.get('api.key') +
-      ApiObject[type].behind
+      this.config.get('api.key')
     );
   }
 }
