@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Timeline, TimelineSchema } from 'src/match/schema/timeline.schema';
 import { Participant, ParticipantSchema } from './participant.schema';
 
 const Types = mongoose.Schema.Types;
@@ -24,9 +23,6 @@ export class Match {
 
   @Prop([{ type: ParticipantSchema }])
   participants: Participant[];
-
-  @Prop([{ type: TimelineSchema }])
-  timelines: Timeline[];
 }
 
 export type MatchDocument = Match & mongoose.Document;
