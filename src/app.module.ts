@@ -12,6 +12,7 @@ import { CommonModule } from './common/common.module';
 import { DataDragonResolver } from './data-dragon/data-dragon.resolver';
 import { DataDragonService } from './data-dragon/data-dragon.service';
 import { DataDragonModule } from './data-dragon/data-dragon.module';
+import { MatchModule } from './match/match.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { DataDragonModule } from './data-dragon/data-dragon.module';
     SummonerModule,
     CommonModule,
     DataDragonModule,
+    MatchModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
