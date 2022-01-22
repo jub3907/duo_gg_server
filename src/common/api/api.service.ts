@@ -13,22 +13,16 @@ export class ApiService {
     );
   }
 
-  async getApiResult(
-    type: ApiType,
-    pathParam: string = '',
-    queryParam: string = '',
-  ) {
-    return await axios.get(this.getUri(type, pathParam, queryParam));
+  async getApiResult(type: ApiType, variable: string, params: any = {}) {
+    return await axios.get(this.getUri(type, variable), {
+      params: {
+        ...params,
+        api_key: this.config.get('api.key'),
+      },
+    });
   }
 
-  private getUri(type: ApiType, parameter: string, queryParam: string) {
-    return (
-      ApiObject[type].path +
-      encodeURI(parameter) +
-      ApiObject[type].behind +
-      '?api_key=' +
-      this.config.get('api.key') +
-      queryParam
-    );
+  private getUri(type: ApiType, variable: string) {
+    return ApiObject[type].path + encodeURI(variable) + ApiObject[type].behind;
   }
 }

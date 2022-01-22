@@ -17,11 +17,11 @@ export class MatchResolver {
 
   @Mutation((returns) => String)
   async testGetMatchIds(@Args('puuid') puuid: string) {
-    const matchIdsResult = await this.matchService.getMatchIdsByPuuid(
+    const matchIdsResult = await this.matchService.getMatchIdsByPuuid({
       puuid,
-      100,
-      'ranked',
-    );
+      type: 'ranked',
+      count: 100,
+    });
     return 'test';
   }
 
