@@ -17,6 +17,32 @@ export class LeagueEntryService {
     return await this.api.getApiResult('entriesById', summonerId);
   }
 
+  async getChallengerEntries() {
+    return await this.api.getApiResult('challengersByQueue', 'RANKED_SOLO_5x5');
+  }
+
+  parseChallengerEntries(data: JSON): LeagueEntryDto[] {
+    return data['entries'].map((data) => ({
+      ...data,
+      tier: 'Challenger',
+      queueType: 'RANKED_SOLO_5x5',
+    }));
+  }
+
+  getRanking(entries: LeagueEntryDto[]) {
+    return entries
+      .sort(({ leaguePoints: a }, { leaguePoints: b }) => {
+        if (a > b) {
+          return -1;
+        } else if (a < b) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+      .slice(0, 10);
+  }
+
   async delete(summonerId: string) {
     return await this.leagueEntryModel.deleteMany({
       summonerId,
