@@ -7,6 +7,7 @@ const Types = mongoose.Schema.Types;
 
 @Schema({
   collection: 'summoners',
+  timestamps: { currentTime: () => new Date().getTime() },
 })
 export class Summoner {
   @Prop({ type: Types.String })
@@ -32,6 +33,12 @@ export class Summoner {
 
   @Prop([{ type: MasterySchema }])
   masteries: Mastery[];
+
+  @Prop({ type: Types.Number })
+  createdAt: number;
+
+  @Prop({ type: Types.Number })
+  updatedAt: number;
 }
 
 export type SummonerDocument = Summoner & mongoose.Document;

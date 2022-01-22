@@ -21,7 +21,17 @@ export class SummonerService {
     await this.SummonerModel.create(data);
   }
 
-  async findByName(name: string) {
-    return await this.SummonerModel.findOne({ name }, 'name puuid');
+  async findByName(name: string, fields: string = 'name') {
+    return await this.SummonerModel.findOne({ name }, fields);
+  }
+
+  async updateSummoner(accountId: string, dto: SummonerDto) {
+    return await this.SummonerModel.findOneAndUpdate(
+      {
+        accountId,
+      },
+      { ...dto },
+      { upsert: true },
+    );
   }
 }

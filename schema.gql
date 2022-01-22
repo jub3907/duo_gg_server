@@ -14,6 +14,7 @@ type LeagueEntryModel {
 }
 
 type Mutation {
+  basicSummonerInfo(name: String!): SummonerBasicModel!
   testGetMatchIds(puuid: String!): String!
   testUpdateMastery(summonerId: String!): String!
   testUpdateMatch(matchId: String!): String!
@@ -28,4 +29,22 @@ type Mutation {
 type Query {
   Ranking: [LeagueEntryModel!]!
   getSummoner(matchId: String!): String!
+}
+
+type SummonerBasicModel {
+  freeRank: SummonerEntryModel
+  iconPath: String!
+  id: String!
+  name: String!
+  profileIconId: Float!
+  soleRank: SummonerEntryModel
+  summonerLevel: Float!
+}
+
+type SummonerEntryModel {
+  leaguePoints: Float!
+  losses: Float!
+  rank: String!
+  tier: String!
+  wins: Float!
 }

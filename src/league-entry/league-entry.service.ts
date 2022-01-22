@@ -13,6 +13,18 @@ export class LeagueEntryService {
     private readonly api: ApiService,
   ) {}
 
+  async getEntryByType(
+    summonerId: string,
+    queueType: 'RANKED_SOLO_5x5' | 'RANKED_FLEX_SR',
+  ) {
+    const entries = (await this.api.getApiResult('entriesById', summonerId))
+      .data;
+
+    return entries.find(
+      ({ queueType: type }: LeagueEntryDto) => type == queueType,
+    );
+  }
+
   async getEntries(summonerId: string) {
     return await this.api.getApiResult('entriesById', summonerId);
   }

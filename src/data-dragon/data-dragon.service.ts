@@ -12,6 +12,17 @@ export class DataDragonService {
     private readonly ddModel: Model<DataDragonDocument>,
   ) {}
 
+  async getImagePath(type: string, key: number | string) {
+    const dataDragon = await this.ddModel.findOne({
+      type,
+    });
+
+    return (
+      dataDragon.base +
+      dataDragon.pathes.find(({ id }) => id === key.toString()).path
+    );
+  }
+
   parseItemAndIcon(data: JSON) {
     return Object.keys(data).map((id) => ({ id, path: data[id].image.full }));
   }
