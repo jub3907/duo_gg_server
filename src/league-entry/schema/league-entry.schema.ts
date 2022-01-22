@@ -4,7 +4,7 @@ import * as mongoose from 'mongoose';
 const Types = mongoose.Schema.Types;
 
 @Schema({
-  collection: 'LeagueEntries',
+  collection: 'leagueEntries',
   timestamps: { currentTime: () => new Date().getTime() },
 })
 export class LeagueEntry {
@@ -30,7 +30,7 @@ export class LeagueEntry {
   wins: number;
 
   @Prop({ type: Types.Number })
-  loses: number;
+  losses: number;
 
   @Prop({ type: Types.Number })
   createdAt: number;

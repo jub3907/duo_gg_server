@@ -14,7 +14,6 @@ export class ApiService {
   }
 
   async getApiResult(type: ApiType, parameter: string = '') {
-    console.log(this.getUri(type, parameter));
     return await axios.get(this.getUri(type, parameter));
   }
 

@@ -3,16 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { SummonerResolver } from './summoner/summoner.resolver';
-import { SummonerService } from './summoner/summoner.service';
 import configuration from './config/configuration';
 import { GraphQLModule } from '@nestjs/graphql';
 import { SummonerModule } from './summoner/summoner.module';
 import { CommonModule } from './common/common.module';
-import { DataDragonResolver } from './data-dragon/data-dragon.resolver';
-import { DataDragonService } from './data-dragon/data-dragon.service';
 import { DataDragonModule } from './data-dragon/data-dragon.module';
 import { MatchModule } from './match/match.module';
+import { LeagueEntryModule } from './league-entry/league-entry.module';
 
 @Module({
   imports: [
@@ -44,6 +41,7 @@ import { MatchModule } from './match/match.module';
     CommonModule,
     DataDragonModule,
     MatchModule,
+    LeagueEntryModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
