@@ -18,20 +18,12 @@ export class ApiService {
   }
 
   private getUri(type: ApiType, parameter: string) {
-    const behind =
-      type === 'timelineBymatchId'
-        ? '/timeline'
-        : type === 'matchesByPuuid'
-        ? '/ids'
-        : '';
-
     return (
-      this.config.get('api.base') +
-      ApiObject[type] +
+      ApiObject[type].path +
       encodeURI(parameter) +
       '?api_key=' +
       this.config.get('api.key') +
-      behind
+      ApiObject[type].behind
     );
   }
 }
