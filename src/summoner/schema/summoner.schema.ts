@@ -27,10 +27,10 @@ export class Summoner {
   @Prop({ type: Types.Number })
   summonerLevel: number;
 
-  @Prop({ type: CommentSchema, default: [] })
+  @Prop([{ type: CommentSchema }])
   comments: Comment[];
 
-  @Prop({ type: MasterySchema, default: [] })
+  @Prop([{ type: MasterySchema }])
   masteries: Mastery[];
 }
 
