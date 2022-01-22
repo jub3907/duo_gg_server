@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
+import { ApiObject, ApiType } from './api.type';
 
 @Injectable()
 export class ApiService {
@@ -12,12 +13,25 @@ export class ApiService {
     );
   }
 
-  private getUri(url: string, parameter: string = null) {
+  async getApiResult(type: ApiType, parameter: string = '') {
+    return await axios.get(this.getUri(type, parameter));
+  }
+
+  private getUri(type: ApiType, parameter: string) {
+    const behind =
+      type === 'timelineBymatchId'
+        ? '/timeline'
+        : type === 'matchesByPuuid'
+        ? '/ids'
+        : '';
+
     return (
       this.config.get('api.base') +
-      url +
+      ApiObject[type] +
       encodeURI(parameter) +
-      `?api_key=${this.config.get('api.key')}`
+      '?api_key=' +
+      this.config.get('api.key') +
+      behind
     );
   }
 }
