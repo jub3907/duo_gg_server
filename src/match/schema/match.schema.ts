@@ -17,9 +17,6 @@ export class Match {
   queueId: number;
 
   @Prop({ type: Types.Number })
-  winner: number;
-
-  @Prop({ type: Types.Number })
   gameCreation: number;
 
   @Prop({ type: Types.Number })
