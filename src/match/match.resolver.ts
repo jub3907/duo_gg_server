@@ -15,6 +15,16 @@ export class MatchResolver {
     return 'test';
   }
 
+  @Mutation((returns) => String)
+  async testGetMatchIds(@Args('puuid') puuid: string) {
+    const matchIdsResult = await this.matchService.getMatchIdsByPuuid(
+      puuid,
+      100,
+      'ranked',
+    );
+    return 'test';
+  }
+
   @Query((returns) => String)
   async getSummoner(@Args('matchId') matchId: string) {
     const result = await this.matchService.findByMatchId(matchId);

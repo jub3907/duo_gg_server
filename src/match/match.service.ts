@@ -19,6 +19,18 @@ export class MatchService {
     return await this.api.getApiResult('matchBymatchId', matchId);
   }
 
+  async getMatchIdsByPuuid(
+    puuid: string,
+    count: number = 20,
+    type: string = '',
+  ) {
+    return await this.api.getApiResult(
+      'matchesByPuuid',
+      puuid,
+      `${type ? '&type=' + type : ''}${count ? '&count=' + count : ''} `,
+    );
+  }
+
   parseMatch(data: JSON): MatchDto {
     return {
       matchId: data['metadata']['matchId'],
