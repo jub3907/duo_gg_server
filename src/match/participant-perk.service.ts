@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { ParticipantPerkDto } from './dto/participant-perk.dto';
 
 @Injectable()
 export class ParticipantPerkService {
-  parsePerks(perks: JSON) {
+  parsePerks(perks: JSON): ParticipantPerkDto {
     return {
       flex: perks['statPerks']['flex'],
       defense: perks['statPerks']['defense'],

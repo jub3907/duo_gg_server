@@ -19,7 +19,7 @@ export class MatchService {
     return await this.api.getApiResult('matchBymatchId', matchId);
   }
 
-  parseMatch<MatchDto>(data: JSON) {
+  parseMatch(data: JSON): MatchDto {
     return {
       matchId: data['metadata']['matchId'],
       queueId: data['info']['queueId'],

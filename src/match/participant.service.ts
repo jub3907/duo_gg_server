@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ParticipantDto } from './dto/participant.dto';
 import { ParticipantItemSpellService } from './participant-item-spell.service';
 import { ParticipantPerkService } from './participant-perk.service';
 
@@ -9,11 +10,11 @@ export class ParticipantService {
     private readonly perkService: ParticipantPerkService,
   ) {}
 
-  parseParticipants(data: Array<any>) {
+  parseParticipants(data: Array<any>): ParticipantDto[] {
     return data.map((participant) => this.parseParticipant(participant));
   }
 
-  private parseParticipant(participant: JSON) {
+  private parseParticipant(participant: JSON): ParticipantDto {
     return {
       puuid: participant['puuid'],
       participantId: participant['participantId'],
