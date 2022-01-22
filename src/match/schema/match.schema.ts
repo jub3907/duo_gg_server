@@ -6,7 +6,6 @@ const Types = mongoose.Schema.Types;
 
 @Schema({
   collection: 'matches',
-  timestamps: { currentTime: () => new Date().getTime() },
 })
 export class Match {
   @Prop({ type: Types.String })

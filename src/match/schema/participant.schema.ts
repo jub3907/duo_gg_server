@@ -62,7 +62,7 @@ export class Participant {
   wardsKilled: number;
 
   @Prop({ type: Types.Number })
-  wardsPlaces: number;
+  wardsPlaced: number;
 
   @Prop({ type: Types.Number })
   visionWardsBoughtInGame: number;
