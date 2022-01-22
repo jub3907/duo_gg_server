@@ -1,5 +1,6 @@
 export class MasteryDto {
-  champId: string;
+  championId: string;
   championLevel: number;
   championPoints: number;
+  lastPlayTime: number;
 }

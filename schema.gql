@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type Mutation {
+  testUpdateMastery(summonerId: String!): String!
   testUpdateMatch(matchId: String!): String!
   testUpdateSummoner(name: String!): String!
   updateChampionData: Boolean!

@@ -9,13 +9,16 @@ const Types = mongoose.Schema.Types;
 })
 export class Mastery {
   @Prop({ type: Types.String })
-  champId: string;
+  championId: string;
 
   @Prop({ type: Types.Number })
   championLevel: number;
 
   @Prop({ type: Types.Number })
   championPoints: number;
+
+  @Prop({ type: Types.Number })
+  lastPlayTime: number;
 }
 
 export type MasteryDocument = Mastery & mongoose.Document;
