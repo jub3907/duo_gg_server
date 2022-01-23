@@ -43,7 +43,38 @@ export class MatchService {
     this.MatchModel.create(dto);
   }
 
-  async findByMatchId(matchId: string) {
-    return await this.MatchModel.findOne({ matchId }, 'matchId');
+  async findByMatchId(matchId: string, field: string = 'matchId') {
+    return await this.MatchModel.findOne({ matchId }, field);
+  }
+
+  async isExistMatch(matchId: string) {
+    return await this.MatchModel.exists({ matchId });
+  }
+
+  async getMatchesByIds(matchIds: string[]) {
+    return await Promise.all(
+      matchIds.map(async (matchId) => {
+        if (await this.isExistMatch(matchId)) {
+          return await this.findByMatchId(matchId, null);
+        } else {
+          const apiResult = await this.getMatch(matchId);
+          return this.parseMatch(apiResult.data);
+        }
+      }),
+    );
+  }
+
+  async update(dto: MatchDto) {
+    await this.MatchModel.findOneAndUpdate(
+      {
+        matchId: dto.matchId,
+      },
+      dto,
+      { upsert: true },
+    );
+  }
+
+  async updateMatches(dtos: MatchDto[]) {
+    return await Promise.all(dtos.map(async (dto) => await this.update(dto)));
   }
 }

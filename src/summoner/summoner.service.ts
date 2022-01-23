@@ -36,6 +36,10 @@ export class SummonerService {
     return await this.SummonerModel.findOne({ name }, fields);
   }
 
+  async isExistName(name: string) {
+    return await this.SummonerModel.exists({ name });
+  }
+
   async updateSummoner(dto: SummonerDto) {
     return await this.SummonerModel.findOneAndUpdate(
       {

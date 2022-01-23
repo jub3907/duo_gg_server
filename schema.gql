@@ -10,10 +10,19 @@ type MasteryModel {
   lastPlayTime: Float!
 }
 
+type MatchModel {
+  gameCreation: Float!
+  gameDuration: Float!
+  matchId: String!
+  participants: [ParticipantModel!]!
+  queueId: String!
+}
+
 type Mutation {
   basicSummonerInfo(name: String!): SummonerBasicModel!
   mastery(summonerId: String!): [MasteryModel!]!
   ranking: [SummonerBasicModel!]!
+  recentMatches(name: String!): [MatchModel!]!
   testGetMatchIds(puuid: String!): String!
   testUpdateMatch(matchId: String!): String!
   testUpdateSummoner(name: String!): String!
@@ -24,8 +33,52 @@ type Mutation {
   updateSummonerData: Boolean!
 }
 
+type ParticipantItemSpellModel {
+  iconPath: String!
+  id: Float!
+  index: Float!
+  type: String!
+}
+
+type ParticipantModel {
+  assists: Float!
+  baronKills: Float!
+  champLevel: Float!
+  championIconPath: String!
+  championId: Float!
+  deaths: Float!
+  dragonKills: Float!
+  goldEarned: Float!
+  individualPosition: String!
+  items: [ParticipantItemSpellModel!]!
+  kills: Float!
+  participantId: Float!
+  perks: ParticipantPerkModel!
+  puuid: String!
+  summoners: [ParticipantItemSpellModel!]!
+  teamId: Float!
+  totalDamageDealtToChampions: Float!
+  totalDamageTaken: Float!
+  totalMinionsKilled: Float!
+  turretKills: Float!
+  visionWardsBoughtInGame: Float!
+  wardsKilled: Float!
+  wardsPlaced: Float!
+  win: Boolean!
+}
+
+type ParticipantPerkModel {
+  defense: Float!
+  flex: Float!
+  offense: Float!
+  primarySelections: [Float!]!
+  primaryStyle: Float!
+  subSelections: [Float!]!
+  subStyle: Float!
+}
+
 type Query {
-  getSummoner(matchId: String!): String!
+  getSummoner(name: String!): String!
 }
 
 type SummonerBasicModel {

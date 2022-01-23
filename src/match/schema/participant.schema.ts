@@ -35,6 +35,9 @@ export class Participant {
   champLevel: number;
 
   @Prop({ type: Types.Number })
+  championId: number;
+
+  @Prop({ type: Types.Number })
   dragonKills: number;
 
   @Prop({ type: Types.Number })

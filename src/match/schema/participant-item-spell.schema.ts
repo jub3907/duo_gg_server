@@ -13,6 +13,9 @@ export class ParticipantItemSpell {
 
   @Prop({ type: Types.Number })
   id: number;
+
+  @Prop({ type: Types.String })
+  type: string;
 }
 
 export type ParticipantItemSpellDocument = ParticipantItemSpell &

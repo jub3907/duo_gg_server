@@ -8,6 +8,7 @@ export class ParticipantDto {
   win: boolean;
   individualPosition: string;
   champLevel: number;
+  championId: number;
   dragonKills: number;
   baronKills: number;
   turretKills: number;

@@ -22,6 +22,7 @@ export class ParticipantService {
       win: participant['win'],
       individualPosition: participant['individualPosition'],
       champLevel: participant['champLevel'],
+      championId: participant['championId'],
       dragonKills: participant['dragonKills'],
       baronKills: participant['baronKills'],
       turretKills: participant['turretKills'],
