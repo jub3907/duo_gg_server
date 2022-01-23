@@ -2,17 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type LeagueEntryModel {
-  leaguePoints: Float!
-  losses: Float!
-  queueType: String!
-  rank: String!
-  summonerId: String!
-  summonerName: String!
-  tier: String!
-  wins: Float!
-}
-
 type Mutation {
   basicSummonerInfo(name: String!): SummonerBasicModel!
   testGetMatchIds(puuid: String!): String!
@@ -27,8 +16,8 @@ type Mutation {
 }
 
 type Query {
-  Ranking: [LeagueEntryModel!]!
   getSummoner(matchId: String!): String!
+  ranking: [SummonerBasicModel!]!
 }
 
 type SummonerBasicModel {

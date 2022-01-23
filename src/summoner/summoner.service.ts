@@ -17,6 +17,17 @@ export class SummonerService {
     return await this.api.getApiResult('summonerByName', name);
   }
 
+  async getSummoners(names: string[]) {
+    return await Promise.all(
+      names.map(
+        async (name) =>
+          (
+            await this.api.getApiResult('summonerByName', name)
+          ).data,
+      ),
+    );
+  }
+
   async create(data: SummonerDto) {
     await this.SummonerModel.create(data);
   }
@@ -25,13 +36,19 @@ export class SummonerService {
     return await this.SummonerModel.findOne({ name }, fields);
   }
 
-  async updateSummoner(accountId: string, dto: SummonerDto) {
+  async updateSummoner(dto: SummonerDto) {
     return await this.SummonerModel.findOneAndUpdate(
       {
-        accountId,
+        accountId: dto.accountId,
       },
       { ...dto },
       { upsert: true },
+    );
+  }
+
+  async updateSummoners(dtos: SummonerDto[]) {
+    return await Promise.all(
+      dtos.map(async (dto) => await this.updateSummoner(dto)),
     );
   }
 }

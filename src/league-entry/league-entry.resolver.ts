@@ -23,14 +23,4 @@ export class LeagueEntryResolver {
   //   console.log(apiResult.data);
   //   return 'test';
   // }
-
-  @Query((returns) => [LeagueEntryModel])
-  async Ranking() {
-    const apiResult = await this.leagueEntryService.getChallengerEntries();
-    const parsed = this.leagueEntryService.parseChallengerEntries(
-      apiResult.data,
-    );
-
-    return this.leagueEntryService.getRanking(parsed);
-  }
 }

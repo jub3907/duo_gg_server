@@ -32,7 +32,7 @@ export class SummonerBasicResolver {
 
   @ResolveField((returns) => SummonerEntryModel)
   async soleRank(@Parent() summoner: SummonerBasicModel) {
-    return await this.leagueEntryService.getEntryByType(
+    return await this.leagueEntryService.findEntryByType(
       summoner.id,
       'RANKED_SOLO_5x5',
     );
@@ -40,7 +40,7 @@ export class SummonerBasicResolver {
 
   @ResolveField((returns) => SummonerEntryModel)
   async freeRank(@Parent() summoner: SummonerBasicModel) {
-    return await this.leagueEntryService.getEntryByType(
+    return await this.leagueEntryService.findEntryByType(
       summoner.id,
       'RANKED_FLEX_SR',
     );
@@ -50,11 +50,33 @@ export class SummonerBasicResolver {
   async basicSummonerInfo(@Args('name') name: string) {
     const apiResult = await this.summonerService.getSummoner(name);
 
-    await this.summonerService.updateSummoner(
-      apiResult.data['accountId'],
-      apiResult.data,
+    await this.summonerService.updateSummoner(apiResult.data);
+
+    const EntryApiResult = await this.leagueEntryService.getEntries(
+      apiResult.data.id,
     );
+    const entries = this.leagueEntryService.parseEntries(EntryApiResult.data);
+    await this.leagueEntryService.updateEntries(entries);
 
     return apiResult.data;
+  }
+
+  @Mutation((returns) => [SummonerBasicModel])
+  async ranking() {
+    const apiResult = await this.leagueEntryService.getChallengerEntries();
+    const parsed = this.leagueEntryService.parseChallengerEntries(
+      apiResult.data,
+    );
+    const rankerEntries = this.leagueEntryService.sliceEntries(parsed);
+    await this.leagueEntryService.updateEntries(rankerEntries);
+
+    const rankerNames = this.leagueEntryService.filterName(rankerEntries);
+    const rankerSummoners = await this.summonerService.getSummoners(
+      rankerNames,
+    );
+
+    await this.summonerService.updateSummoners(rankerSummoners);
+
+    return rankerSummoners;
   }
 }

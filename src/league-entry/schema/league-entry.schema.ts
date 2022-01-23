@@ -9,10 +9,10 @@ const Types = mongoose.Schema.Types;
 })
 export class LeagueEntry {
   @Prop({ type: Types.String })
-  summonerId: string;
+  id: string;
 
   @Prop({ type: Types.String })
-  summonerName: string;
+  name: string;
 
   @Prop({ type: Types.String })
   queueType: string;
