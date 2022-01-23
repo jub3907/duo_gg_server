@@ -2,10 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type MasteryModel {
+  championId: Float!
+  championLevel: Float!
+  championPoints: Float!
+  iconPath: String!
+  lastPlayTime: Float!
+}
+
 type Mutation {
   basicSummonerInfo(name: String!): SummonerBasicModel!
+  mastery(summonerId: String!): [MasteryModel!]!
+  ranking: [SummonerBasicModel!]!
   testGetMatchIds(puuid: String!): String!
-  testUpdateMastery(summonerId: String!): String!
   testUpdateMatch(matchId: String!): String!
   testUpdateSummoner(name: String!): String!
   updateChampionData: Boolean!
@@ -17,7 +26,6 @@ type Mutation {
 
 type Query {
   getSummoner(matchId: String!): String!
-  ranking: [SummonerBasicModel!]!
 }
 
 type SummonerBasicModel {

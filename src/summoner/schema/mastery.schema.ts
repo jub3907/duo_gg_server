@@ -8,8 +8,8 @@ const Types = mongoose.Schema.Types;
   toObject: { virtuals: true },
 })
 export class Mastery {
-  @Prop({ type: Types.String })
-  championId: string;
+  @Prop({ type: Types.Number })
+  championId: number;
 
   @Prop({ type: Types.Number })
   championLevel: number;

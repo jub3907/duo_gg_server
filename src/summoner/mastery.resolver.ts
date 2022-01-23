@@ -1,16 +1,35 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Mutation,
+  Parent,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
+import { DataDragonService } from 'src/data-dragon/data-dragon.service';
 import { MasteryService } from './mastery.service';
+import { MasteryModel } from './model/mastery.model';
 
-@Resolver()
+@Resolver((of) => MasteryModel)
 export class MasteryResolver {
-  constructor(private readonly masteryService: MasteryService) {}
+  constructor(
+    private readonly masteryService: MasteryService,
 
-  @Mutation((returns) => String)
-  async testUpdateMastery(@Args('summonerId') summonerId: string) {
+    private readonly dataDragonService: DataDragonService,
+  ) {}
+
+  @ResolveField((returns) => String)
+  iconPath(@Parent() mastery: MasteryModel) {
+    return this.dataDragonService.getImagePath('champion', mastery.championId);
+  }
+
+  @Mutation((returns) => [MasteryModel])
+  async mastery(@Args('summonerId') summonerId: string) {
     const apiResult = await this.masteryService.getMastery(summonerId);
+    const slicedMastery = this.masteryService.sliceMastery(apiResult.data);
+    console.log(slicedMastery);
 
-    await this.masteryService.update(apiResult.data, summonerId);
+    await this.masteryService.update(slicedMastery, summonerId);
 
-    return 'test';
+    return slicedMastery;
   }
 }
