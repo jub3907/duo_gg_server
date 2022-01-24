@@ -42,4 +42,8 @@ export class ParticipantService {
       perks: this.perkService.parsePerks(participant['perks']),
     };
   }
+
+  getParticipantIdByPuuid(puuid: string, dtos: ParticipantDto[]) {
+    return dtos.find((dto) => dto.puuid === puuid)?.participantId;
+  }
 }

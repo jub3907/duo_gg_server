@@ -18,6 +18,9 @@ export class SummonerBasicModel {
   @Field((type) => String)
   id: string;
 
+  @Field((type) => String)
+  puuid: string;
+
   @Field((type) => SummonerEntryModel, { nullable: true })
   soleRank: SummonerEntryModel;
 

@@ -32,6 +32,7 @@ type MatchDetailModel {
 type Mutation {
   basicSummonerInfo(name: String!): SummonerBasicModel!
   mastery(summonerId: String!): [MasteryModel!]!
+  matchBuild(matchId: String!, puuid: String!): TimelineModel!
   matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
   recentMatches(name: String!): [MatchBasicModel!]!
@@ -105,6 +106,7 @@ type SummonerBasicModel {
   id: String!
   name: String!
   profileIconId: Float!
+  puuid: String!
   soleRank: SummonerEntryModel
   summonerLevel: Float!
 }
@@ -115,4 +117,14 @@ type SummonerEntryModel {
   rank: String!
   tier: String!
   wins: Float!
+}
+
+type TimelineItemModel {
+  iconPath: String!
+  timestamp: Float!
+}
+
+type TimelineModel {
+  items: [TimelineItemModel!]!
+  skills: [Float!]!
 }

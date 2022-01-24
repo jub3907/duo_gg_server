@@ -10,6 +10,7 @@ import { CommonModule } from './common/common.module';
 import { DataDragonModule } from './data-dragon/data-dragon.module';
 import { MatchModule } from './match/match.module';
 import { LeagueEntryModule } from './league-entry/league-entry.module';
+import { TimelineModule } from './timeline/timeline.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { LeagueEntryModule } from './league-entry/league-entry.module';
     DataDragonModule,
     MatchModule,
     LeagueEntryModule,
+    TimelineModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
