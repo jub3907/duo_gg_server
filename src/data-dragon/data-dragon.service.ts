@@ -17,10 +17,9 @@ export class DataDragonService {
       type,
     });
 
-    return (
-      dataDragon.base +
-      dataDragon.pathes.find(({ id }) => id === key.toString()).path
-    );
+    const item = dataDragon.pathes.find(({ id }) => id === key.toString());
+
+    return item ? dataDragon.base + item.path : '';
   }
 
   parseItemAndIcon(data: JSON) {
