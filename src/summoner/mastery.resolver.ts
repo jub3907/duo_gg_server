@@ -26,7 +26,6 @@ export class MasteryResolver {
   async mastery(@Args('summonerId') summonerId: string) {
     const apiResult = await this.masteryService.getMastery(summonerId);
     const slicedMastery = this.masteryService.sliceMastery(apiResult.data);
-    console.log(slicedMastery);
 
     await this.masteryService.update(slicedMastery, summonerId);
 
