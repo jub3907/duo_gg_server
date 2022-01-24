@@ -1,6 +1,6 @@
 import { Mutation, Resolver } from '@nestjs/graphql';
 import { create } from 'domain';
-import { ApiService } from 'src/common/api/api.service';
+import { ApiService } from 'src/common/api.service';
 import { DataDragonService } from './data-dragon.service';
 
 @Resolver((of) => Boolean)

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ApiService } from 'src/common/api/api.service';
+import { ApiService } from 'src/common/api.service';
 import { TimelineEventDto } from './dto/timeline-event.dto';
 import { TimelineEventType } from './type/timeline-event.type';
 import { TimelineDto } from './dto/timeline.dto';

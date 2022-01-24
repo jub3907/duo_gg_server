@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Expose } from 'class-transformer';
 import * as mongoose from 'mongoose';
 
 const Types = mongoose.Schema.Types;
@@ -20,6 +21,9 @@ export class Comment {
 
   @Prop({ type: Types.String })
   text: string;
+
+  @Expose()
+  id: string;
 }
 
 export type CommentDocument = Comment & mongoose.Document;
