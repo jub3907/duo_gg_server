@@ -1,4 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { TeamIdType } from '../type/team-id.type';
 import { ParticipantItemSpellModel } from './participant-item-spell.model';
 import { ParticipantPerkModel } from './participant-perk.model';
 
@@ -14,7 +15,7 @@ export class ParticipantModel {
   summonerName: string;
 
   @Field((type) => Number)
-  teamId: number;
+  teamId: TeamIdType;
 
   @Field((type) => Boolean)
   win: boolean;

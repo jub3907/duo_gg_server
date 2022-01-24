@@ -1,3 +1,4 @@
+import { TeamIdType } from '../type/team-id.type';
 import { ParticipantItemSpellDto } from './participant-item-spell.dto';
 import { ParticipantPerkDto } from './participant-perk.dto';
 
@@ -5,7 +6,7 @@ export class ParticipantDto {
   puuid: string;
   participantId: number;
   summonerName: string;
-  teamId: number;
+  teamId: TeamIdType;
   win: boolean;
   individualPosition: string;
   champLevel: number;
