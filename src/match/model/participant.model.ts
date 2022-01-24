@@ -10,6 +10,9 @@ export class ParticipantModel {
   @Field((type) => Number)
   participantId: number;
 
+  @Field((type) => String)
+  summonerName: string;
+
   @Field((type) => Number)
   teamId: number;
 

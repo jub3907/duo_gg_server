@@ -17,4 +17,7 @@ export class MatchModel {
 
   @Field((type) => [ParticipantModel])
   participants: ParticipantModel[];
+
+  @Field((type) => String)
+  matchType: string;
 }

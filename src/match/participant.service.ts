@@ -18,6 +18,7 @@ export class ParticipantService {
     return {
       puuid: participant['puuid'],
       participantId: participant['participantId'],
+      summonerName: participant['summonerName'],
       teamId: participant['teamId'],
       win: participant['win'],
       individualPosition: participant['individualPosition'],

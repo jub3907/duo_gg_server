@@ -19,6 +19,9 @@ export class Participant {
   @Prop({ type: Types.String })
   puuid: string;
 
+  @Prop({ type: Types.String })
+  summonerName: string;
+
   @Prop({ type: Types.Number })
   participantId: number;
 

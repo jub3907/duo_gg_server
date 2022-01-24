@@ -4,6 +4,7 @@ import { ParticipantPerkDto } from './participant-perk.dto';
 export class ParticipantDto {
   puuid: string;
   participantId: number;
+  summonerName: string;
   teamId: number;
   win: boolean;
   individualPosition: string;

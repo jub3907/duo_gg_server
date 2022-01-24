@@ -14,6 +14,7 @@ type MatchModel {
   gameCreation: Float!
   gameDuration: Float!
   matchId: String!
+  matchType: String!
   participants: [ParticipantModel!]!
   queueId: String!
 }
@@ -55,6 +56,7 @@ type ParticipantModel {
   participantId: Float!
   perks: ParticipantPerkModel!
   puuid: String!
+  summonerName: String!
   summoners: [ParticipantItemSpellModel!]!
   teamId: Float!
   totalDamageDealtToChampions: Float!
