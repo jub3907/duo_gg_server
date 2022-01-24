@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { TeamIdType } from '../type/team-id.type';
+import { TeamIdType } from '../../match/type/team-id.type';
 import { ParticipantItemSpellModel } from './participant-item-spell.model';
 import { ParticipantPerkModel } from './participant-perk.model';
 

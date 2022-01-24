@@ -8,14 +8,14 @@ import {
 import { match } from 'assert';
 import { DataDragonService } from 'src/data-dragon/data-dragon.service';
 import { SummonerService } from 'src/summoner/summoner.service';
-import { ParticipantDto } from './dto/participant.dto';
+import { ParticipantDto } from '../participant/dto/participant.dto';
 import { MatchBaseResolver } from './match-base.resolver';
 import { MatchService } from './match.service';
 import { MatchBasicModel } from './model/match-basic.model';
-import { ParticipantModel } from './model/participant.model';
-import { ParticipantService } from './participant.service';
+import { ParticipantModel } from '../participant/model/participant.model';
+import { ParticipantService } from '../participant/participant.service';
 import { MatchDocument } from './schema/match.schema';
-import { ParticipantDocument } from './schema/participant.schema';
+import { ParticipantDocument } from '../participant/schema/participant.schema';
 
 @Resolver((of) => MatchBasicModel)
 export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {

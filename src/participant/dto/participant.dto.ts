@@ -1,4 +1,4 @@
-import { TeamIdType } from '../type/team-id.type';
+import { TeamIdType } from '../../match/type/team-id.type';
 import { ParticipantItemSpellDto } from './participant-item-spell.dto';
 import { ParticipantPerkDto } from './participant-perk.dto';
 

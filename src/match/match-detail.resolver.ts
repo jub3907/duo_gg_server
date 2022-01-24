@@ -8,11 +8,11 @@ import {
 } from '@nestjs/graphql';
 import { extend } from '@nestjs/graphql/dist/utils';
 import { SummonerService } from 'src/summoner/summoner.service';
-import { ParticipantDto } from './dto/participant.dto';
+import { ParticipantDto } from '../participant/dto/participant.dto';
 import { MatchBaseResolver } from './match-base.resolver';
 import { MatchService } from './match.service';
 import { MatchDetailModel } from './model/match-detail.model';
-import { ParticipantModel } from './model/participant.model';
+import { ParticipantModel } from '../participant/model/participant.model';
 import { MatchDocument } from './schema/match.schema';
 
 @Resolver((of) => MatchDetailModel)

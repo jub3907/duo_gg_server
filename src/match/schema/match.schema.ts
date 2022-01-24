@@ -1,6 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Participant, ParticipantSchema } from './participant.schema';
+import {
+  Participant,
+  ParticipantSchema,
+} from '../../participant/schema/participant.schema';
 
 const Types = mongoose.Schema.Types;
 

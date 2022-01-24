@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { ApiService } from 'src/common/api/api.service';
 import { MatchIdsApiDto } from './dto/match-id.dto';
 import { MatchDetailDto } from './dto/match-detail.dto';
-import { ParticipantService } from './participant.service';
+import { ParticipantService } from '../participant/participant.service';
 import { Match, MatchDocument } from './schema/match.schema';
 
 @Injectable()

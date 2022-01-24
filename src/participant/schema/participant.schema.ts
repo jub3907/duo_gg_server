@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { TeamIdType } from '../type/team-id.type';
+import { TeamIdType } from '../../match/type/team-id.type';
 import {
   ParticipantItemSpell,
   ParticipantItemSpellSchema,
