@@ -7,6 +7,8 @@ import { MasteryResolver } from './mastery.resolver';
 import { MasteryService } from './mastery.service';
 import { SummonerBasicResolver } from './summoner-basic.resolver';
 import { LeagueEntryModule } from 'src/league-entry/league-entry.module';
+import { CommentResolver } from './comment.resolver';
+import { CommentService } from './comment.service';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { LeagueEntryModule } from 'src/league-entry/league-entry.module';
     MasteryService,
     MasteryResolver,
     SummonerBasicResolver,
+    CommentResolver,
+    CommentService,
   ],
   exports: [MongooseModule, SummonerService],
 })

@@ -55,4 +55,8 @@ export class SummonerService {
       dtos.map(async (dto) => await this.updateSummoner(dto)),
     );
   }
+
+  async update(summoner: SummonerDocument) {
+    return await summoner.save();
+  }
 }

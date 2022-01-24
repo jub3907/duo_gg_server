@@ -13,6 +13,9 @@ export class Comment {
   @Prop({ type: Types.Number })
   createdAt: number;
 
+  @Prop({ type: Types.Number })
+  updatedAt: number;
+
   @Prop({ type: Types.String })
   nickname: string;
 
@@ -23,7 +26,7 @@ export class Comment {
   text: string;
 
   @Expose()
-  id: string;
+  _id: mongoose.Types.ObjectId;
 }
 
 export type CommentDocument = Comment & mongoose.Document;
