@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SummonerModule } from 'src/summoner/summoner.module';
-import { MatchResolver } from './match.resolver';
+import { MatchBaseResolver } from './match-base.resolver';
+import { MatchBasicResolver } from './match-basic.resolver';
+import { MatchDetailResolver } from './match-detail.resolver';
 import { MatchService } from './match.service';
+import { ParticipantBasicResolver } from './participant-basic.resolver';
 import { ParticipantItemSpellResolver } from './participant-item-spell.resolver';
 import { ParticipantItemSpellService } from './participant-item-spell.service';
 import { ParticipantPerkService } from './participant-perk.service';
@@ -18,13 +21,15 @@ import { Match, MatchSchema } from './schema/match.schema';
     SummonerModule,
   ],
   providers: [
-    MatchResolver,
     MatchService,
     ParticipantService,
     ParticipantItemSpellService,
     ParticipantPerkService,
     ParticipantItemSpellResolver,
     ParticipantResolver,
+    MatchBasicResolver,
+    ParticipantBasicResolver,
+    MatchDetailResolver,
   ],
   exports: [MongooseModule, MatchService],
 })

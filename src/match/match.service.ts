@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ApiService } from 'src/common/api/api.service';
 import { MatchIdsApiDto } from './dto/match-id.dto';
-import { MatchDto } from './dto/match.dto';
+import { MatchDetailDto } from './dto/match-detail.dto';
 import { ParticipantService } from './participant.service';
 import { Match, MatchDocument } from './schema/match.schema';
 
@@ -27,7 +27,7 @@ export class MatchService {
     });
   }
 
-  parseMatch(data: JSON): MatchDto {
+  parseMatch(data: JSON): MatchDetailDto {
     return {
       matchId: data['metadata']['matchId'],
       queueId: data['info']['queueId'],
@@ -39,7 +39,7 @@ export class MatchService {
     };
   }
 
-  async create(dto: MatchDto) {
+  async create(dto: MatchDetailDto) {
     this.MatchModel.create(dto);
   }
 
@@ -64,7 +64,7 @@ export class MatchService {
     );
   }
 
-  async update(dto: MatchDto) {
+  async update(dto: MatchDetailDto) {
     await this.MatchModel.findOneAndUpdate(
       {
         matchId: dto.matchId,
@@ -74,7 +74,7 @@ export class MatchService {
     );
   }
 
-  async updateMatches(dtos: MatchDto[]) {
+  async updateMatches(dtos: MatchDetailDto[]) {
     return await Promise.all(dtos.map(async (dto) => await this.update(dto)));
   }
 }

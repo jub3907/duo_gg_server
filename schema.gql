@@ -10,28 +10,44 @@ type MasteryModel {
   lastPlayTime: Float!
 }
 
-type MatchModel {
+type MatchBasicModel {
   gameCreation: Float!
   gameDuration: Float!
   matchId: String!
   matchType: String!
+  participants: [ParticipantBasicModel!]!
+  puuid: String!
+  summonerInGameData: ParticipantModel!
+}
+
+type MatchDetailModel {
+  gameCreation: Float!
+  gameDuration: Float!
+  matchDetail(matchId: String!): Float!
+  matchId: String!
+  matchType: String!
   participants: [ParticipantModel!]!
-  queueId: String!
 }
 
 type Mutation {
   basicSummonerInfo(name: String!): SummonerBasicModel!
   mastery(summonerId: String!): [MasteryModel!]!
+  matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
-  recentMatches(name: String!): [MatchModel!]!
-  testGetMatchIds(puuid: String!): String!
-  testUpdateMatch(matchId: String!): String!
+  recentMatches(name: String!): [MatchBasicModel!]!
   testUpdateSummoner(name: String!): String!
   updateChampionData: Boolean!
   updateIconData: Boolean!
   updateItemData: Boolean!
   updateRuneData: Boolean!
   updateSummonerData: Boolean!
+}
+
+type ParticipantBasicModel {
+  championIconPath: String!
+  participantId: Float!
+  puuid: String!
+  summonerName: String!
 }
 
 type ParticipantItemSpellModel {
