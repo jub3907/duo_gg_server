@@ -21,12 +21,12 @@ type MatchBasicModel {
 }
 
 type MatchDetailModel {
+  blue: [ParticipantModel!]!
   gameCreation: Float!
   gameDuration: Float!
-  matchDetail(matchId: String!): Float!
   matchId: String!
   matchType: String!
-  participants: [ParticipantModel!]!
+  red: [ParticipantModel!]!
 }
 
 type Mutation {

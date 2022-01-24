@@ -5,5 +5,8 @@ import { ParticipantModel } from './participant.model';
 @ObjectType()
 export class MatchDetailModel extends MatchBaseModel {
   @Field((type) => [ParticipantModel])
-  participants: ParticipantModel[];
+  red: ParticipantModel[];
+
+  @Field((type) => [ParticipantModel])
+  blue: ParticipantModel[];
 }

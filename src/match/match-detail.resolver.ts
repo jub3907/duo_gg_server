@@ -8,9 +8,11 @@ import {
 } from '@nestjs/graphql';
 import { extend } from '@nestjs/graphql/dist/utils';
 import { SummonerService } from 'src/summoner/summoner.service';
+import { ParticipantDto } from './dto/participant.dto';
 import { MatchBaseResolver } from './match-base.resolver';
 import { MatchService } from './match.service';
 import { MatchDetailModel } from './model/match-detail.model';
+import { ParticipantModel } from './model/participant.model';
 import { MatchDocument } from './schema/match.schema';
 
 @Resolver((of) => MatchDetailModel)
@@ -22,12 +24,24 @@ export class MatchDetailResolver extends MatchBaseResolver(MatchDetailModel) {
     super();
   }
 
-  @ResolveField((returns) => Number)
+  @ResolveField((returns) => [ParticipantModel])
+  red(@Parent() match: MatchDocument) {
+    return match.participants.filter(
+      (participant) => participant.teamId === 200,
+    );
+  }
+
+  @ResolveField((returns) => [ParticipantModel])
+  blue(@Parent() match: MatchDocument) {
+    return match.participants.filter(
+      (participant) => participant.teamId === 100,
+    );
+  }
+
   @Mutation((returns) => MatchDetailModel)
   async matchDetail(@Args('matchId') matchId: string) {
     const match = this.matchService.findByMatchId(matchId, null);
 
-    console.log(match);
     return match;
   }
 }
