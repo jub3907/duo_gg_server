@@ -50,14 +50,13 @@ type MatchDetailModel {
 
 type Mutation {
   basicSummonerInfo(name: String!): SummonerBasicModel!
-  comments(name: String!): [CommentModel!]!
   createComment(input: CommentCreateInput!, name: String!): CommentModel!
   deleteComment(input: CommentDeleteInput!): Boolean!
   mastery(summonerId: String!): [MasteryModel!]!
   matchBuild(matchId: String!, puuid: String!): TimelineModel!
   matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
-  recentMatches(name: String!): [MatchBasicModel!]!
+  recentMatches(count: Float!, name: String!): [MatchBasicModel!]!
   testUpdateSummoner(name: String!): String!
   updateChampionData: Boolean!
   updateIconData: Boolean!
@@ -119,6 +118,7 @@ type ParticipantPerkModel {
 }
 
 type Query {
+  comments(name: String!): [CommentModel!]!
   getSummoner(name: String!): String!
 }
 

@@ -1,5 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Expose } from 'class-transformer';
 import * as mongoose from 'mongoose';
+import { PostQueueType } from '../type/post-queue.type';
+import { PostRoleType } from '../type/post-role.type';
 
 const Types = mongoose.Schema.Types;
 
@@ -9,10 +12,10 @@ const Types = mongoose.Schema.Types;
 })
 export class Post {
   @Prop({ type: Types.String })
-  queueType: string;
+  queueType: PostQueueType;
 
   @Prop({ type: Types.String })
-  role: string;
+  role: PostRoleType;
 
   @Prop({ type: Types.String })
   name: string;
