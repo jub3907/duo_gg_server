@@ -24,7 +24,7 @@ export class CommentService {
     };
   }
 
-  async addCommentByAccountId(accountId: string, dto: CommentDto) {
+  async addCommentByAccountId(accountId: string, dto: Comment) {
     return await this.summonerModel.findOneAndUpdate(
       {
         accountId,

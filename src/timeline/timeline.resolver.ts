@@ -14,6 +14,7 @@ import { TimelineItemModel } from './model/timeline-item.model';
 import { TimelineModel } from './model/timeline.model';
 import { TimelineDocument } from './schema/timeline.schema';
 import { TimelineService } from './timeline.service';
+import { ApiService } from 'src/common/api.service';
 
 @Resolver((of) => TimelineModel)
 export class TimelineResolver {
@@ -23,6 +24,7 @@ export class TimelineResolver {
     private readonly timelineService: TimelineService,
     private readonly timelineEventService: TimelineEventService,
     private readonly dataDragonService: DataDragonService,
+    private readonly api: ApiService,
   ) {}
 
   @ResolveField((returns) => [TimelineItemModel])
@@ -66,8 +68,7 @@ export class TimelineResolver {
     const isExist = await this.timelineService.isExist(matchId);
 
     if (!isExist) {
-      const apiResult = await this.timelineService.getTimeline(matchId);
-      const timeline = this.timelineService.parseTimeline(apiResult.data);
+      const timeline = await this.api.getTimeline(matchId);
       await this.timelineService.create(timeline);
     }
 

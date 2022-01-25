@@ -13,10 +13,6 @@ export class MasteryService {
     private readonly api: ApiService,
   ) {}
 
-  async getMastery(summonerId: string) {
-    return await this.api.getApiResult('masteryById', summonerId);
-  }
-
   sliceMastery(mastery: MasteryDto[]) {
     return mastery.slice(0, 10);
   }

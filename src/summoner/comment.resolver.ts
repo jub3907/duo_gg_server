@@ -21,6 +21,8 @@ export class CommentResolver {
   ) {
     const summoner = await this.summonerService.findByName(name, 'accountId');
 
+    console.log(summoner);
+
     if (!summoner) {
       throw new Error();
     }

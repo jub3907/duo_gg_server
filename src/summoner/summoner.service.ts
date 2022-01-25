@@ -13,21 +13,6 @@ export class SummonerService {
     private readonly api: ApiService,
   ) {}
 
-  async getSummoner(name: string) {
-    return await this.api.getApiResult('summonerByName', name);
-  }
-
-  async getSummoners(names: string[]) {
-    return await Promise.all(
-      names.map(
-        async (name) =>
-          (
-            await this.api.getApiResult('summonerByName', name)
-          ).data,
-      ),
-    );
-  }
-
   async create(data: SummonerDto) {
     await this.SummonerModel.create(data);
   }

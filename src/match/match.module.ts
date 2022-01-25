@@ -7,8 +7,6 @@ import { MatchDetailResolver } from './match-detail.resolver';
 import { MatchService } from './match.service';
 import { ParticipantBasicResolver } from '../participant/participant-basic.resolver';
 import { ParticipantItemSpellResolver } from '../participant/participant-item-spell.resolver';
-import { ParticipantItemSpellService } from '../participant/participant-item-spell.service';
-import { ParticipantPerkService } from '../participant/participant-perk.service';
 import { ParticipantResolver } from '../participant/participant.resolver';
 import { ParticipantService } from '../participant/participant.service';
 import { Match, MatchSchema } from './schema/match.schema';
@@ -25,8 +23,6 @@ import { ParticipantModule } from 'src/participant/participant.module';
   providers: [
     MatchService,
     ParticipantService,
-    ParticipantItemSpellService,
-    ParticipantPerkService,
     ParticipantItemSpellResolver,
     ParticipantResolver,
     MatchBasicResolver,

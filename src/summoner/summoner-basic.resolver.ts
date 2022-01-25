@@ -1,17 +1,16 @@
-import { ConfigService } from '@nestjs/config';
 import {
   Args,
   Mutation,
   Resolver,
-  Query,
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import axios from 'axios';
+import { ApiService } from 'src/common/api.service';
 import { DataDragonService } from 'src/data-dragon/data-dragon.service';
 import { LeagueEntryService } from 'src/league-entry/league-entry.service';
 import { SummonerBasicModel } from './model/summoner-basic.model';
 import { SummonerEntryModel } from './model/summoner-entry.model';
+import { SummonerDocument } from './schema/summoner.schema';
 import { SummonerService } from './summoner.service';
 
 @Resolver((of) => SummonerBasicModel)
@@ -20,10 +19,11 @@ export class SummonerBasicResolver {
     private readonly summonerService: SummonerService,
     private readonly leagueEntryService: LeagueEntryService,
     private readonly dataDragonService: DataDragonService,
+    private readonly api: ApiService,
   ) {}
 
   @ResolveField((returns) => String)
-  iconPath(@Parent() summoner: SummonerBasicModel) {
+  iconPath(@Parent() summoner: SummonerDocument) {
     return this.dataDragonService.getImagePath(
       'profileicon',
       summoner.profileIconId,
@@ -31,7 +31,7 @@ export class SummonerBasicResolver {
   }
 
   @ResolveField((returns) => SummonerEntryModel)
-  async soleRank(@Parent() summoner: SummonerBasicModel) {
+  async soleRank(@Parent() summoner: SummonerDocument) {
     return await this.leagueEntryService.findEntryByType(
       summoner.id,
       'RANKED_SOLO_5x5',
@@ -39,7 +39,7 @@ export class SummonerBasicResolver {
   }
 
   @ResolveField((returns) => SummonerEntryModel)
-  async freeRank(@Parent() summoner: SummonerBasicModel) {
+  async freeRank(@Parent() summoner: SummonerDocument) {
     return await this.leagueEntryService.findEntryByType(
       summoner.id,
       'RANKED_FLEX_SR',
@@ -48,32 +48,24 @@ export class SummonerBasicResolver {
 
   @Mutation((returns) => SummonerBasicModel)
   async basicSummonerInfo(@Args('name') name: string) {
-    const apiResult = await this.summonerService.getSummoner(name);
+    const summoner = await this.api.getSummoner(name);
+    await this.summonerService.updateSummoner(summoner);
 
-    await this.summonerService.updateSummoner(apiResult.data);
-
-    const EntryApiResult = await this.leagueEntryService.getEntries(
-      apiResult.data.id,
-    );
-    const entries = this.leagueEntryService.parseEntries(EntryApiResult.data);
+    const entries = await this.api.getEntries(summoner.id);
     await this.leagueEntryService.updateEntries(entries);
 
-    return apiResult.data;
+    return summoner;
   }
 
   @Mutation((returns) => [SummonerBasicModel])
   async ranking() {
-    const apiResult = await this.leagueEntryService.getChallengerEntries();
-    const parsed = this.leagueEntryService.parseChallengerEntries(
-      apiResult.data,
-    );
-    const rankerEntries = this.leagueEntryService.sliceEntries(parsed);
+    const challengerEntries = await this.api.getChallengerEntries();
+    const rankerEntries =
+      this.leagueEntryService.sliceEntries(challengerEntries);
     await this.leagueEntryService.updateEntries(rankerEntries);
 
     const rankerNames = this.leagueEntryService.filterName(rankerEntries);
-    const rankerSummoners = await this.summonerService.getSummoners(
-      rankerNames,
-    );
+    const rankerSummoners = await this.api.getSummoners(rankerNames);
 
     await this.summonerService.updateSummoners(rankerSummoners);
 

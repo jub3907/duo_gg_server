@@ -22,31 +22,6 @@ export class DataDragonService {
     return item ? dataDragon.base + item.path : '';
   }
 
-  parseItemAndIcon(data: JSON) {
-    return Object.keys(data).map((id) => ({ id, path: data[id].image.full }));
-  }
-
-  parseSpellAndChampion(data: JSON) {
-    return Object.keys(data).map((id) => ({
-      id: data[id].key,
-      path: data[id].image.full,
-    }));
-  }
-
-  parseRune(data: Array<any>) {
-    return data
-      .map(({ id, icon, slots }) =>
-        [{ id, path: icon }].concat(
-          slots
-            .map(({ runes }) =>
-              runes.map(({ id, icon }) => ({ id, path: icon })).flat(),
-            )
-            .flat(),
-        ),
-      )
-      .flat();
-  }
-
   async create(dataDragonDto: DataDragonDto) {
     return await this.ddModel.create(dataDragonDto);
   }

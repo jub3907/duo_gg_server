@@ -16,29 +16,6 @@ export class MatchService {
     private readonly participantService: ParticipantService,
   ) {}
 
-  async getMatch(matchId: string) {
-    return await this.api.getApiResult('matchBymatchId', matchId);
-  }
-
-  async getMatchIdsByPuuid({ puuid, count = 20, type }: MatchIdsApiDto) {
-    return await this.api.getApiResult('matchesByPuuid', puuid, {
-      type,
-      count,
-    });
-  }
-
-  parseMatch(data: JSON): MatchDetailDto {
-    return {
-      matchId: data['metadata']['matchId'],
-      queueId: data['info']['queueId'],
-      gameCreation: data['info']['gameCreation'],
-      gameDuration: data['info']['gameDuration'],
-      participants: this.participantService.parseParticipants(
-        data['info']['participants'],
-      ),
-    };
-  }
-
   async create(dto: MatchDetailDto) {
     this.MatchModel.create(dto);
   }
@@ -47,18 +24,17 @@ export class MatchService {
     return await this.MatchModel.findOne({ matchId }, field);
   }
 
-  async isExistMatch(matchId: string) {
+  async isExist(matchId: string) {
     return await this.MatchModel.exists({ matchId });
   }
 
   async getMatchesByIds(matchIds: string[]) {
     return await Promise.all(
       matchIds.map(async (matchId) => {
-        if (await this.isExistMatch(matchId)) {
+        if (await this.isExist(matchId)) {
           return await this.findByMatchId(matchId, null);
         } else {
-          const apiResult = await this.getMatch(matchId);
-          return this.parseMatch(apiResult.data);
+          return await this.api.getMatch(matchId);
         }
       }),
     );

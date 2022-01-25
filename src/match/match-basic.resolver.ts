@@ -16,6 +16,7 @@ import { ParticipantModel } from '../participant/model/participant.model';
 import { ParticipantService } from '../participant/participant.service';
 import { MatchDocument } from './schema/match.schema';
 import { ParticipantDocument } from '../participant/schema/participant.schema';
+import { ApiService } from 'src/common/api.service';
 
 @Resolver((of) => MatchBasicModel)
 export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {
@@ -24,6 +25,7 @@ export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {
     private readonly matchService: MatchService,
     private readonly summonerService: SummonerService,
     private readonly participantService: ParticipantService,
+    private readonly api: ApiService,
   ) {
     super();
   }
@@ -55,21 +57,19 @@ export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {
   ) {
     const summoner = (await this.summonerService.isExistName(name))
       ? await this.summonerService.findByName(name, 'puuid')
-      : await this.summonerService.getSummoner(name);
+      : await this.api.getSummoner(name);
 
-    const matchIdsApiResult = await this.matchService.getMatchIdsByPuuid({
-      puuid: summoner['puuid'],
+    const matchIds = await this.api.getMatchIdsByPuuid({
+      puuid: summoner.puuid,
       count,
     });
 
-    const matches = await this.matchService.getMatchesByIds(
-      matchIdsApiResult.data,
-    );
+    const matches = await this.matchService.getMatchesByIds(matchIds);
 
     await this.matchService.updateMatches(matches);
 
     return matches.map((match) =>
-      Object.assign(match, { puuid: summoner['puuid'] }),
+      Object.assign(match, { puuid: summoner.puuid }),
     );
   }
 }

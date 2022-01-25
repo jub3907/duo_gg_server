@@ -15,30 +15,6 @@ export class TimelineService {
     private readonly api: ApiService,
   ) {}
 
-  async getTimeline(matchId: string) {
-    return await this.api.getApiResult('timelineBymatchId', matchId);
-  }
-
-  parseTimeline(data: JSON): TimelineDto {
-    const events = data['info']['frames']
-      .map(({ events }) =>
-        events.reduce((acc, event) => {
-          if (TimelineEventType.includes(event.type)) {
-            acc.push({
-              ...event,
-              timestamp: Math.floor(
-                event.timestamp / data['info']['frameInterval'],
-              ),
-            });
-          }
-          return acc;
-        }, []),
-      )
-      .flat();
-
-    return { matchId: data['metadata']['matchId'], events: events };
-  }
-
   async findByMatchId(matchId: string, field: string = 'matchId') {
     return await this.timelineModel.findOne({ matchId }, field);
   }

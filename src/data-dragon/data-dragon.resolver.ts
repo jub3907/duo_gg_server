@@ -15,8 +15,7 @@ export class DataDragonResolver {
 
   @Mutation((returns) => Boolean)
   async updateItemData() {
-    const data = await this.api.getDataDragon(this.version, 'item');
-    const pathList = this.ddService.parseItemAndIcon(data.data.data);
+    const pathList = await this.api.getDataDragonPathList(this.version, 'item');
 
     await this.ddService.delete('item');
 
@@ -35,8 +34,10 @@ export class DataDragonResolver {
 
   @Mutation((returns) => Boolean)
   async updateIconData() {
-    const data = await this.api.getDataDragon(this.version, 'profileicon');
-    const pathList = this.ddService.parseItemAndIcon(data.data.data);
+    const pathList = await this.api.getDataDragonPathList(
+      this.version,
+      'profileicon',
+    );
 
     await this.ddService.delete('profileicon');
 
@@ -55,8 +56,10 @@ export class DataDragonResolver {
 
   @Mutation((returns) => Boolean)
   async updateSummonerData() {
-    const data = await this.api.getDataDragon(this.version, 'summoner');
-    const pathList = this.ddService.parseSpellAndChampion(data.data.data);
+    const pathList = await this.api.getDataDragonPathList(
+      this.version,
+      'summoner',
+    );
 
     await this.ddService.delete('summoner');
 
@@ -75,9 +78,10 @@ export class DataDragonResolver {
 
   @Mutation((returns) => Boolean)
   async updateChampionData() {
-    const data = await this.api.getDataDragon(this.version, 'champion');
-
-    const pathList = this.ddService.parseSpellAndChampion(data.data.data);
+    const pathList = await this.api.getDataDragonPathList(
+      this.version,
+      'champion',
+    );
 
     await this.ddService.delete('champion');
 
@@ -96,9 +100,10 @@ export class DataDragonResolver {
 
   @Mutation((returns) => Boolean)
   async updateRuneData() {
-    const data = await this.api.getDataDragon(this.version, 'runesReforged');
-
-    const pathList = this.ddService.parseRune(data.data);
+    const pathList = await this.api.getDataDragonPathList(
+      this.version,
+      'runesReforged',
+    );
 
     await this.ddService.delete('runes');
 

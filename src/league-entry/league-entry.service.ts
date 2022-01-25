@@ -34,40 +34,6 @@ export class LeagueEntryService {
     );
   }
 
-  async getEntries(id: string) {
-    return await this.api.getApiResult('entriesById', id);
-  }
-
-  parseEntries(data: JSON[]): LeagueEntryDto[] {
-    return data.map((item) => ({
-      id: item['summonerId'],
-      name: item['summonerName'],
-      tier: item['tier'],
-      queueType: item['queueType'],
-      rank: item['rank'],
-      leaguePoints: item['leaguePoints'],
-      wins: item['wins'],
-      losses: item['losses'],
-    }));
-  }
-
-  async getChallengerEntries() {
-    return await this.api.getApiResult('challengersByQueue', 'RANKED_SOLO_5x5');
-  }
-
-  parseChallengerEntries(data: JSON): LeagueEntryDto[] {
-    return data['entries'].map((data) => ({
-      id: data['summonerId'],
-      name: data['summonerName'],
-      tier: 'Challenger',
-      queueType: 'RANKED_SOLO_5x5',
-      rank: data['rank'],
-      leaguePoints: data['leaguePoints'],
-      wins: data['wins'],
-      losses: data['losses'],
-    }));
-  }
-
   sliceEntries(data: LeagueEntryDto[]): LeagueEntryDto[] {
     return data
       .sort(({ leaguePoints: a }, { leaguePoints: b }) => {

@@ -57,7 +57,6 @@ type Mutation {
   matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
   recentMatches(count: Float!, name: String!): [MatchBasicModel!]!
-  testUpdateSummoner(name: String!): String!
   updateChampionData: Boolean!
   updateIconData: Boolean!
   updateItemData: Boolean!
@@ -119,7 +118,6 @@ type ParticipantPerkModel {
 
 type Query {
   comments(name: String!): [CommentModel!]!
-  getSummoner(name: String!): String!
 }
 
 type SummonerBasicModel {
