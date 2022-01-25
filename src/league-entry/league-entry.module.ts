@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { LeagueEntryService } from './league-entry.service';
-import { LeagueEntryResolver } from './league-entry.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LeagueEntry, LeagueEntrySchema } from './schema/league-entry.schema';
 
@@ -10,7 +9,7 @@ import { LeagueEntry, LeagueEntrySchema } from './schema/league-entry.schema';
       { name: LeagueEntry.name, useFactory: () => LeagueEntrySchema },
     ]),
   ],
-  providers: [LeagueEntryService, LeagueEntryResolver],
+  providers: [LeagueEntryService],
   exports: [LeagueEntryService],
 })
 export class LeagueEntryModule {}
