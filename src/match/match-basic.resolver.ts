@@ -49,14 +49,17 @@ export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {
   }
 
   @Mutation((returns) => [MatchBasicModel])
-  async recentMatches(@Args('name') name: string) {
+  async recentMatches(
+    @Args('name') name: string,
+    @Args('count') count: number,
+  ) {
     const summoner = (await this.summonerService.isExistName(name))
       ? await this.summonerService.findByName(name, 'puuid')
       : await this.summonerService.getSummoner(name);
 
     const matchIdsApiResult = await this.matchService.getMatchIdsByPuuid({
       puuid: summoner['puuid'],
-      count: 20,
+      count,
     });
 
     const matches = await this.matchService.getMatchesByIds(
