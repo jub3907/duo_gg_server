@@ -56,7 +56,7 @@ type Mutation {
   matchBuild(matchId: String!, puuid: String!): TimelineModel!
   matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
-  recentMatches(count: Float!, name: String!): [MatchBasicModel!]!
+  recentMatches(matchCount: Float!, name: String!): [MatchBasicModel!]!
   updateChampionData: Boolean!
   updateIconData: Boolean!
   updateItemData: Boolean!

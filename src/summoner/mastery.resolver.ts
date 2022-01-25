@@ -6,6 +6,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { ApiService } from 'src/common/api.service';
+import { SummonerIdArgs } from 'src/common/args/summoner-id.args';
 import { DataDragonService } from 'src/data-dragon/data-dragon.service';
 import { MasteryService } from './mastery.service';
 import { MasteryModel } from './model/mastery.model';
@@ -24,7 +25,7 @@ export class MasteryResolver {
   }
 
   @Mutation((returns) => [MasteryModel])
-  async mastery(@Args('summonerId') summonerId: string) {
+  async mastery(@Args() { summonerId }: SummonerIdArgs) {
     const masteries = await this.api.getMastery(summonerId);
     const sliced = this.masteryService.sliceMastery(masteries);
 

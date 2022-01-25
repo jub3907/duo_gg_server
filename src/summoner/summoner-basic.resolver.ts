@@ -6,6 +6,7 @@ import {
   Parent,
 } from '@nestjs/graphql';
 import { ApiService } from 'src/common/api.service';
+import { NameArgs } from 'src/common/args/name.args';
 import { DataDragonService } from 'src/data-dragon/data-dragon.service';
 import { LeagueEntryService } from 'src/league-entry/league-entry.service';
 import { SummonerBasicModel } from './model/summoner-basic.model';
@@ -47,7 +48,7 @@ export class SummonerBasicResolver {
   }
 
   @Mutation((returns) => SummonerBasicModel)
-  async basicSummonerInfo(@Args('name') name: string) {
+  async basicSummonerInfo(@Args() { name }: NameArgs) {
     const summoner = await this.api.getSummoner(name);
     await this.summonerService.updateSummoner(summoner);
 

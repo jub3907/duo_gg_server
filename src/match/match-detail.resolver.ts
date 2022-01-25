@@ -14,6 +14,7 @@ import { MatchService } from './match.service';
 import { MatchDetailModel } from './model/match-detail.model';
 import { ParticipantModel } from '../participant/model/participant.model';
 import { MatchDocument } from './schema/match.schema';
+import { MatchIdArgs } from 'src/common/args/match-id.args';
 
 @Resolver((of) => MatchDetailModel)
 export class MatchDetailResolver extends MatchBaseResolver(MatchDetailModel) {
@@ -39,7 +40,7 @@ export class MatchDetailResolver extends MatchBaseResolver(MatchDetailModel) {
   }
 
   @Mutation((returns) => MatchDetailModel)
-  async matchDetail(@Args('matchId') matchId: string) {
+  async matchDetail(@Args() { matchId }: MatchIdArgs) {
     const match = this.matchService.findByMatchId(matchId, null);
 
     return match;

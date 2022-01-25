@@ -6,7 +6,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { PostType } from './dto/post.input';
+import { PostCreateInput } from './dto/post-create.input';
 import { PostModel } from './model/post.model';
 import { PostService } from './post.service';
 import { PostDocument } from './schema/post.schema';
@@ -21,7 +21,7 @@ export class PostResolver {
   }
 
   @Mutation((type) => PostModel)
-  async createPost(@Args('post') post: PostType) {
+  async createPost(@Args('post') post: PostCreateInput) {
     return await this.postService.create(post);
   }
 

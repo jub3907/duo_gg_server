@@ -15,6 +15,8 @@ import { TimelineModel } from './model/timeline.model';
 import { TimelineDocument } from './schema/timeline.schema';
 import { TimelineService } from './timeline.service';
 import { ApiService } from 'src/common/api.service';
+import { MatchIdArgs } from 'src/common/args/match-id.args';
+import { PuuidArgs } from 'src/common/args/puuid.args';
 
 @Resolver((of) => TimelineModel)
 export class TimelineResolver {
@@ -52,8 +54,8 @@ export class TimelineResolver {
 
   @Mutation((returns) => TimelineModel)
   async matchBuild(
-    @Args('matchId') matchId: string,
-    @Args('puuid') puuid: string,
+    @Args() { matchId }: MatchIdArgs,
+    @Args() { puuid }: PuuidArgs,
   ) {
     const matches = await this.matchService.findByMatchId(
       matchId,
