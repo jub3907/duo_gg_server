@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CryptService } from 'src/common/crypt.service';
 import { CommentService } from './comment.service';
 import { CommentCreateInput } from './dto/comment-create.input';
@@ -36,7 +36,7 @@ export class CommentResolver {
     return commentSchema;
   }
 
-  @Mutation((returns) => [CommentModel])
+  @Query((returns) => [CommentModel])
   async comments(@Args('name') name: string) {
     const summoner = await this.summonerService.findByName(name, 'comments');
 
