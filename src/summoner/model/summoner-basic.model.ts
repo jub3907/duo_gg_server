@@ -21,6 +21,9 @@ export class SummonerBasicModel {
   @Field((type) => String)
   puuid: string;
 
+  @Field((type) => Number)
+  updatedAt: number;
+
   @Field((type) => SummonerEntryModel, { nullable: true })
   soleRank: SummonerEntryModel;
 

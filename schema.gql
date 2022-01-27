@@ -129,6 +129,7 @@ type SummonerBasicModel {
   puuid: String!
   soleRank: SummonerEntryModel
   summonerLevel: Float!
+  updatedAt: Float!
 }
 
 type SummonerEntryModel {
