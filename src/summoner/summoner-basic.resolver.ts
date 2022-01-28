@@ -49,8 +49,8 @@ export class SummonerBasicResolver {
 
   @Mutation((returns) => SummonerBasicModel)
   async basicSummonerInfo(@Args() { name }: NameArgs) {
-    const summoner = await this.api.getSummoner(name);
-    await this.summonerService.updateSummoner(summoner);
+    const result = await this.api.getSummoner(name);
+    const summoner = await this.summonerService.updateSummoner(result);
 
     const entries = await this.api.getEntries(summoner.id);
     await this.leagueEntryService.updateEntries(entries);
