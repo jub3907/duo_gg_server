@@ -57,11 +57,11 @@ type Mutation {
   matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
   recentMatches(matchCount: Float!, name: String!): [MatchBasicModel!]!
-  updateChampionData: Boolean!
-  updateIconData: Boolean!
-  updateItemData: Boolean!
-  updateRuneData: Boolean!
-  updateSummonerData: Boolean!
+  updateChampionData(version: String!): Boolean!
+  updateIconData(version: String!): Boolean!
+  updateItemData(version: String!): Boolean!
+  updateRuneData(version: String!): Boolean!
+  updateSummonerData(version: String!): Boolean!
 }
 
 type ParticipantBasicModel {

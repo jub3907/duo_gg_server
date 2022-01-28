@@ -1,21 +1,19 @@
-import { Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { create } from 'domain';
 import { ApiService } from 'src/common/api.service';
 import { DataDragonService } from './data-dragon.service';
+import { VersionArgs } from './dto/version.args';
 
 @Resolver((of) => Boolean)
 export class DataDragonResolver {
-  version: string;
   constructor(
     private readonly api: ApiService,
     private readonly ddService: DataDragonService,
-  ) {
-    this.version = '12.1.1';
-  }
+  ) {}
 
   @Mutation((returns) => Boolean)
-  async updateItemData() {
-    const pathList = await this.api.getDataDragonPathList(this.version, 'item');
+  async updateItemData(@Args() { version }: VersionArgs) {
+    const pathList = await this.api.getDataDragonPathList(version, 'item');
 
     await this.ddService.delete('item');
 
@@ -33,9 +31,9 @@ export class DataDragonResolver {
   }
 
   @Mutation((returns) => Boolean)
-  async updateIconData() {
+  async updateIconData(@Args() { version }: VersionArgs) {
     const pathList = await this.api.getDataDragonPathList(
-      this.version,
+      version,
       'profileicon',
     );
 
@@ -55,11 +53,8 @@ export class DataDragonResolver {
   }
 
   @Mutation((returns) => Boolean)
-  async updateSummonerData() {
-    const pathList = await this.api.getDataDragonPathList(
-      this.version,
-      'summoner',
-    );
+  async updateSummonerData(@Args() { version }: VersionArgs) {
+    const pathList = await this.api.getDataDragonPathList(version, 'summoner');
 
     await this.ddService.delete('summoner');
 
@@ -77,11 +72,8 @@ export class DataDragonResolver {
   }
 
   @Mutation((returns) => Boolean)
-  async updateChampionData() {
-    const pathList = await this.api.getDataDragonPathList(
-      this.version,
-      'champion',
-    );
+  async updateChampionData(@Args() { version }: VersionArgs) {
+    const pathList = await this.api.getDataDragonPathList(version, 'champion');
 
     await this.ddService.delete('champion');
 
@@ -99,9 +91,9 @@ export class DataDragonResolver {
   }
 
   @Mutation((returns) => Boolean)
-  async updateRuneData() {
+  async updateRuneData(@Args() { version }: VersionArgs) {
     const pathList = await this.api.getDataDragonPathList(
-      this.version,
+      version,
       'runesReforged',
     );
 
