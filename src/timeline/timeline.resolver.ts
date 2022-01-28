@@ -32,10 +32,26 @@ export class TimelineResolver {
   @ResolveField((returns) => [TimelineItemModel])
   items(@Parent() timeline: TimelineDocument) {
     return timeline.events.reduce((acc, val) => {
-      if (val.type === 'ITEM_PURCHASED') {
+      if (val.type !== 'ITEM_PURCHASED') {
+        return acc;
+      }
+
+      if (acc.length === 0) {
         acc.push({
           timestamp: val.timestamp,
-          iconPath: this.dataDragonService.getImagePath('item', val.itemId),
+          iconPathes: [this.dataDragonService.getImagePath('item', val.itemId)],
+        });
+        return acc;
+      }
+
+      if (acc[acc.length - 1].timestamp === val.timestamp) {
+        acc[acc.length - 1].iconPathes.push(
+          this.dataDragonService.getImagePath('item', val.itemId),
+        );
+      } else {
+        acc.push({
+          timestamp: val.timestamp,
+          iconPathes: [this.dataDragonService.getImagePath('item', val.itemId)],
         });
       }
       return acc;

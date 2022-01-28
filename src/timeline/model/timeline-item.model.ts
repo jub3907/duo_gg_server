@@ -6,6 +6,6 @@ export class TimelineItemModel {
   @Field((type) => Number)
   timestamp: number;
 
-  @Field((type) => String)
-  iconPath: string;
+  @Field((type) => [String])
+  iconPathes: string[];
 }

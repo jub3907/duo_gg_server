@@ -141,7 +141,7 @@ type SummonerEntryModel {
 }
 
 type TimelineItemModel {
-  iconPath: String!
+  iconPathes: [String!]!
   timestamp: Float!
 }
 
