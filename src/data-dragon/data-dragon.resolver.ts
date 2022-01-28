@@ -100,7 +100,7 @@ export class DataDragonResolver {
     await this.ddService.delete('runes');
 
     const result = await this.ddService.create({
-      type: 'runes',
+      type: 'runesReforged',
       base: 'http://ddragon.leagueoflegends.com/cdn/img/',
       pathes: pathList,
     });

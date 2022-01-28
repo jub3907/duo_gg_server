@@ -110,10 +110,10 @@ type ParticipantPerkModel {
   defense: Float!
   flex: Float!
   offense: Float!
-  primarySelections: [Float!]!
-  primaryStyle: Float!
-  subSelections: [Float!]!
-  subStyle: Float!
+  primarySelections: [String!]!
+  primaryStyle: String!
+  subSelections: [String!]!
+  subStyle: String!
 }
 
 type Query {

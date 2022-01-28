@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { ApiService } from 'src/common/api.service';
 import { DataDragonDto } from './dto/data-dragon.dto';
 import { DataDragon, DataDragonDocument } from './schema/data-dragon.schema';
+import { DataDragonType } from './type/data-dragon.type';
 
 @Injectable()
 export class DataDragonService {
@@ -12,7 +13,7 @@ export class DataDragonService {
     private readonly ddModel: Model<DataDragonDocument>,
   ) {}
 
-  async getImagePath(type: string, key: number | string) {
+  async getImagePath(type: DataDragonType, key: number | string) {
     const dataDragon = await this.ddModel.findOne({
       type,
     });

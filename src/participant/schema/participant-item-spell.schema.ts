@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
+import { DataDragonType } from 'src/data-dragon/type/data-dragon.type';
 
 const Types = mongoose.Schema.Types;
 
@@ -15,7 +16,7 @@ export class ParticipantItemSpell {
   id: number;
 
   @Prop({ type: Types.String })
-  type: string;
+  type: DataDragonType;
 }
 
 export type ParticipantItemSpellDocument = ParticipantItemSpell &

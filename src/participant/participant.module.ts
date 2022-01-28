@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SummonerModule } from 'src/summoner/summoner.module';
 import { ParticipantBasicResolver } from './participant-basic.resolver';
 import { ParticipantItemSpellResolver } from './participant-item-spell.resolver';
+import { ParticipantPerkResolver } from './participant-perk.resolver';
 import { ParticipantResolver } from './participant.resolver';
 import { ParticipantService } from './participant.service';
 import { Participant } from './schema/participant.schema';
@@ -14,6 +15,7 @@ import { Participant } from './schema/participant.schema';
     ParticipantItemSpellResolver,
     ParticipantResolver,
     ParticipantBasicResolver,
+    ParticipantPerkResolver,
   ],
   exports: [ParticipantService],
 })

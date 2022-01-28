@@ -11,15 +11,15 @@ export class ParticipantPerkModel {
   @Field((type) => Number)
   offense: number;
 
-  @Field((type) => Number)
-  primaryStyle: number;
+  @Field((type) => String)
+  primaryStyle: string;
 
-  @Field((type) => [Number])
-  primarySelections: number[];
+  @Field((type) => [String])
+  primarySelections: string[];
 
-  @Field((type) => Number)
-  subStyle: number;
+  @Field((type) => String)
+  subStyle: string;
 
-  @Field((type) => [Number])
-  subSelections: number[];
+  @Field((type) => [String])
+  subSelections: string[];
 }
