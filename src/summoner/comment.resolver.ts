@@ -1,4 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CountArgs } from 'src/common/args/match-count.args';
 import { NameArgs } from 'src/common/args/name.args';
 import { CryptService } from 'src/common/crypt.service';
 import { CommentService } from './comment.service';
@@ -38,14 +39,15 @@ export class CommentResolver {
   }
 
   @Query((returns) => [CommentModel])
-  async comments(@Args() { name }: NameArgs) {
+  async comments(@Args() { name }: NameArgs, @Args() { count }: CountArgs) {
     const summoner = await this.summonerService.findByName(name, 'comments');
 
     if (!summoner) {
       throw new Error();
     }
 
-    return summoner.comments;
+    const sliced = this.commentService.sliceComments(summoner.comments, count);
+    return sliced;
   }
 
   @Mutation((returns) => Boolean)

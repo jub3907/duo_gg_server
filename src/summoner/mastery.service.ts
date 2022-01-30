@@ -13,8 +13,8 @@ export class MasteryService {
     private readonly api: ApiService,
   ) {}
 
-  sliceMastery(mastery: MasteryDto[]) {
-    return mastery.slice(0, 10);
+  sliceMastery(mastery: MasteryDto[], count: number) {
+    return mastery.slice(0, count);
   }
 
   async update(data: MasteryDto[], summonerId: string) {

@@ -68,8 +68,8 @@ export class SummonerBasicResolver {
     const rankerNames = this.leagueEntryService.filterName(rankerEntries);
     const rankerSummoners = await this.api.getSummoners(rankerNames);
 
-    await this.summonerService.updateSummoners(rankerSummoners);
+    const rankers = await this.summonerService.updateSummoners(rankerSummoners);
 
-    return rankerSummoners;
+    return rankers;
   }
 }

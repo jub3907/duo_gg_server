@@ -18,7 +18,7 @@ import { MatchDocument } from './schema/match.schema';
 import { ParticipantDocument } from '../participant/schema/participant.schema';
 import { ApiService } from 'src/common/api.service';
 import { NameArgs } from 'src/common/args/name.args';
-import { MatchCountArgs } from 'src/common/args/match-count.args';
+import { CountArgs } from 'src/common/args/match-count.args';
 
 @Resolver((of) => MatchBasicModel)
 export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {
@@ -55,7 +55,7 @@ export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {
   @Mutation((returns) => [MatchBasicModel])
   async recentMatches(
     @Args() { name }: NameArgs,
-    @Args() { matchCount }: MatchCountArgs,
+    @Args() { count: matchCount }: CountArgs,
   ) {
     const summoner = (await this.summonerService.isExistName(name))
       ? await this.summonerService.findByName(name, 'puuid')

@@ -24,6 +24,10 @@ export class CommentService {
     };
   }
 
+  sliceComments(comments: CommentDto[], count: number) {
+    return comments.slice(0, count);
+  }
+
   async addCommentByAccountId(accountId: string, dto: Comment) {
     return await this.summonerModel.findOneAndUpdate(
       {

@@ -2,10 +2,12 @@ import {
   Args,
   Mutation,
   Parent,
+  Query,
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
 import { ApiService } from 'src/common/api.service';
+import { CountArgs } from 'src/common/args/match-count.args';
 import { SummonerIdArgs } from 'src/common/args/summoner-id.args';
 import { DataDragonService } from 'src/data-dragon/data-dragon.service';
 import { MasteryService } from './mastery.service';
@@ -24,13 +26,12 @@ export class MasteryResolver {
     return this.dataDragonService.getImagePath('champion', mastery.championId);
   }
 
-  @Mutation((returns) => [MasteryModel])
-  async mastery(@Args() { summonerId }: SummonerIdArgs) {
+  @Query((returns) => [MasteryModel])
+  async mastery(
+    @Args() { summonerId }: SummonerIdArgs,
+    @Args() { count }: CountArgs,
+  ) {
     const masteries = await this.api.getMastery(summonerId);
-    const sliced = this.masteryService.sliceMastery(masteries);
-
-    await this.masteryService.update(sliced, summonerId);
-
-    return sliced;
+    return this.masteryService.sliceMastery(masteries, count);
   }
 }

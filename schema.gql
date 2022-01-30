@@ -51,12 +51,12 @@ type MatchDetailModel {
 type Mutation {
   basicSummonerInfo(name: String!): SummonerBasicModel!
   createComment(input: CommentCreateInput!, name: String!): CommentModel!
+  createPost(post: PostCreateInput!): PostModel!
   deleteComment(input: CommentDeleteInput!): Boolean!
-  mastery(summonerId: String!): [MasteryModel!]!
   matchBuild(matchId: String!, puuid: String!): TimelineModel!
   matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
-  recentMatches(matchCount: Float!, name: String!): [MatchBasicModel!]!
+  recentMatches(count: Float!, name: String!): [MatchBasicModel!]!
   updateChampionData(version: String!): Boolean!
   updateIconData(version: String!): Boolean!
   updateItemData(version: String!): Boolean!
@@ -116,8 +116,25 @@ type ParticipantPerkModel {
   subStyle: String!
 }
 
+input PostCreateInput {
+  name: String!
+  queueType: String!
+  role: String!
+  text: String!
+  tier: String!
+}
+
+type PostModel {
+  createdAt: Float!
+  name: String!
+  text: String!
+  title: String!
+}
+
 type Query {
-  comments(name: String!): [CommentModel!]!
+  comments(count: Float!, name: String!): [CommentModel!]!
+  mastery(count: Float!, summonerId: String!): [MasteryModel!]!
+  posts(createdAt: Float!, limit: Float!): [PostModel!]!
 }
 
 type SummonerBasicModel {
