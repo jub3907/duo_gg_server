@@ -24,8 +24,12 @@ export class CommentService {
     };
   }
 
-  sliceComments(comments: CommentDto[], count: number) {
-    return comments.slice(0, count);
+  sortAndSliceComments(comments: Comment[], count: number) {
+    return comments
+      .sort(({ createdAt: a }, { createdAt: b }) => {
+        return a > b ? -1 : a === b ? 0 : 1;
+      })
+      .slice(0, count);
   }
 
   async addCommentByAccountId(accountId: string, dto: Comment) {

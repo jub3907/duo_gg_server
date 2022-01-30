@@ -13,5 +13,5 @@ export class CommentDeleteInput {
 
   @Field((type) => String)
   @IsString()
-  name: string;
+  summonerName: string;
 }

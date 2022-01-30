@@ -10,8 +10,8 @@ input CommentCreateInput {
 
 input CommentDeleteInput {
   id: String!
-  name: String!
   password: String!
+  summonerName: String!
 }
 
 type CommentModel {
@@ -54,7 +54,6 @@ type Mutation {
   createPost(post: PostCreateInput!): PostModel!
   deleteComment(input: CommentDeleteInput!): Boolean!
   matchBuild(matchId: String!, puuid: String!): TimelineModel!
-  matchDetail(matchId: String!): MatchDetailModel!
   ranking: [SummonerBasicModel!]!
   recentMatches(count: Float!, name: String!): [MatchBasicModel!]!
   updateChampionData(version: String!): Boolean!
@@ -134,6 +133,7 @@ type PostModel {
 type Query {
   comments(count: Float!, name: String!): [CommentModel!]!
   mastery(count: Float!, summonerId: String!): [MasteryModel!]!
+  matchDetail(matchId: String!): MatchDetailModel!
   posts(createdAt: Float!, limit: Float!): [PostModel!]!
 }
 

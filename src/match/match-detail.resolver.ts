@@ -39,7 +39,7 @@ export class MatchDetailResolver extends MatchBaseResolver(MatchDetailModel) {
     );
   }
 
-  @Mutation((returns) => MatchDetailModel)
+  @Query((returns) => MatchDetailModel)
   async matchDetail(@Args() { matchId }: MatchIdArgs) {
     const match = this.matchService.findByMatchId(matchId, null);
 

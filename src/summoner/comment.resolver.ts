@@ -46,14 +46,17 @@ export class CommentResolver {
       throw new Error();
     }
 
-    const sliced = this.commentService.sliceComments(summoner.comments, count);
+    const sliced = this.commentService.sortAndSliceComments(
+      summoner.comments,
+      count,
+    );
     return sliced;
   }
 
   @Mutation((returns) => Boolean)
   async deleteComment(@Args('input') input: CommentDeleteInput) {
     const summoner = await this.summonerService.findByName(
-      input.name,
+      input.summonerName,
       'comments',
     );
 
