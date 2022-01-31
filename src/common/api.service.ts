@@ -63,6 +63,18 @@ export class ApiService {
     );
   }
 
+  async getSummonerById(id: string) {
+    return this.parseSummoner(
+      (await this.getApiResult('summonerById', id)).data,
+    );
+  }
+
+  async getSummonersById(ids: string[]) {
+    return await Promise.all(
+      ids.map(async (id) => await this.getSummonerById(id)),
+    );
+  }
+
   async getMastery(summonerId: string) {
     return this.parseMasteries(
       (await this.getApiResult('masteryById', summonerId)).data,

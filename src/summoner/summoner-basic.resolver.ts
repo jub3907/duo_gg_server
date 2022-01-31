@@ -60,16 +60,22 @@ export class SummonerBasicResolver {
 
   @Mutation((returns) => [SummonerBasicModel])
   async ranking() {
-    const challengerEntries = await this.api.getChallengerEntries();
-    const rankerEntries =
-      this.leagueEntryService.sliceEntries(challengerEntries);
-    await this.leagueEntryService.updateEntries(rankerEntries);
+    try {
+      const challengerEntries = await this.api.getChallengerEntries();
+      const rankerEntries =
+        this.leagueEntryService.sliceEntries(challengerEntries);
+      await this.leagueEntryService.updateEntries(rankerEntries);
 
-    const rankerNames = this.leagueEntryService.filterName(rankerEntries);
-    const rankerSummoners = await this.api.getSummoners(rankerNames);
+      const rankerIds = this.leagueEntryService.filterId(rankerEntries);
+      const rankerSummoners = await this.api.getSummonersById(rankerIds);
+      const rankers = await this.summonerService.updateSummoners(
+        rankerSummoners,
+      );
 
-    const rankers = await this.summonerService.updateSummoners(rankerSummoners);
-
-    return rankers;
+      return rankers;
+    } catch (e) {
+      console.log(e);
+      throw new Error('랭킹 정보를 받아오는데 실패했습니다.');
+    }
   }
 }

@@ -27,6 +27,10 @@ export const ApiObject = {
     path: 'https://asia.api.riotgames.com/lol/match/v5/matches/',
     behind: '/timeline',
   },
+  summonerById: {
+    path: 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/',
+    behind: '',
+  },
 } as const;
 
 export type ApiType = keyof typeof ApiObject;

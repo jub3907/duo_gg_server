@@ -41,7 +41,6 @@ export class CommentResolver {
   @Query((returns) => [CommentModel])
   async comments(@Args() { name }: NameArgs, @Args() { count }: CountArgs) {
     const summoner = await this.summonerService.findByName(name, 'comments');
-
     if (!summoner) {
       throw new Error();
     }

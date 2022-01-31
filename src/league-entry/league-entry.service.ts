@@ -48,8 +48,8 @@ export class LeagueEntryService {
       .slice(0, 10);
   }
 
-  filterName(data: LeagueEntryDto[]): string[] {
-    return data.map((data) => data.name);
+  filterId(data: LeagueEntryDto[]): string[] {
+    return data.map((data) => data.id);
   }
 
   async delete(summonerId: string) {
