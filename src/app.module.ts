@@ -14,6 +14,7 @@ import { PostModule } from './post/post.module';
 const whitelist = [
   undefined,
   'http://localhost:3000',
+  'http://localhost:4000',
   'http://112.171.82.107:3000/',
   'http://112.171.82.107:5000/',
   'http://3.36.31.37:5000',
