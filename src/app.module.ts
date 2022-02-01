@@ -18,6 +18,8 @@ const whitelist = [
   'http://112.171.82.107:3000/',
   'http://112.171.82.107:5000/',
   'http://3.36.31.37:5000',
+  'http://3.36.31.37:4000/',
+  'http://lolduo.kr',
 ];
 
 const corsOrigin = function (origin: any, callback: any) {
