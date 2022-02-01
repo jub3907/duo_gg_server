@@ -23,10 +23,8 @@ import { CountArgs } from 'src/common/args/match-count.args';
 @Resolver((of) => MatchBasicModel)
 export class MatchBasicResolver extends MatchBaseResolver(MatchBasicModel) {
   constructor(
-    private readonly dataDragonService: DataDragonService,
     private readonly matchService: MatchService,
     private readonly summonerService: SummonerService,
-    private readonly participantService: ParticipantService,
     private readonly api: ApiService,
   ) {
     super();

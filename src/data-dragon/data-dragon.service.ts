@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ApiService } from 'src/common/api.service';
 import { DataDragonDto } from './dto/data-dragon.dto';
 import { DataDragon, DataDragonDocument } from './schema/data-dragon.schema';
 import { DataDragonType } from './type/data-dragon.type';

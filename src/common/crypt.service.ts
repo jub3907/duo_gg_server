@@ -1,7 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import axios from 'axios';
-import { ApiObject, ApiType } from './type/api.type';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

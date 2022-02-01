@@ -10,7 +10,6 @@ export class MasteryService {
   constructor(
     @InjectModel(Summoner.name)
     private readonly SummonerModel: Model<SummonerDocument>,
-    private readonly api: ApiService,
   ) {}
 
   sliceMastery(mastery: MasteryDto[], count: number) {

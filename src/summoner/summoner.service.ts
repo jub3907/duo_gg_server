@@ -10,7 +10,6 @@ export class SummonerService {
   constructor(
     @InjectModel(Summoner.name)
     private readonly SummonerModel: Model<SummonerDocument>,
-    private readonly api: ApiService,
   ) {}
 
   async create(data: SummonerDto) {

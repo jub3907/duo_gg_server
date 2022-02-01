@@ -18,17 +18,8 @@ import { ParticipantModule } from 'src/participant/participant.module';
       { name: Match.name, useFactory: () => MatchSchema },
     ]),
     SummonerModule,
-    ParticipantModule,
   ],
-  providers: [
-    MatchService,
-    ParticipantService,
-    ParticipantItemSpellResolver,
-    ParticipantResolver,
-    MatchBasicResolver,
-    ParticipantBasicResolver,
-    MatchDetailResolver,
-  ],
+  providers: [MatchService, MatchBasicResolver, MatchDetailResolver],
   exports: [MongooseModule, MatchService],
 })
 export class MatchModule {}

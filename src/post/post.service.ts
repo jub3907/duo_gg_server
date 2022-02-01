@@ -20,6 +20,7 @@ export class PostService {
     return await this.postModel
       .find({ createdAt: { $lt: createdAt } }, field)
       .limit(limit)
+      .sort('-createdAt')
       .exec();
   }
 

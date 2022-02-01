@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
@@ -81,7 +79,7 @@ const corsOrigin = function (origin: any, callback: any) {
     TimelineModule,
     PostModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, ConfigService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

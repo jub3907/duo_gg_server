@@ -10,7 +10,6 @@ export class LeagueEntryService {
   constructor(
     @InjectModel(LeagueEntry.name)
     private readonly leagueEntryModel: Model<LeagueEntryDocument>,
-    private readonly api: ApiService,
   ) {}
 
   async findEntryByType(

@@ -30,7 +30,7 @@ export class CommentResolver {
     input.password = await this.cryptService.hashPassword(input.password);
 
     const commentSchema = this.commentService.create(input);
-    const data = await this.commentService.addCommentByAccountId(
+    await this.commentService.addCommentByAccountId(
       summoner.accountId,
       commentSchema,
     );
@@ -49,6 +49,7 @@ export class CommentResolver {
       summoner.comments,
       count,
     );
+
     return sliced;
   }
 

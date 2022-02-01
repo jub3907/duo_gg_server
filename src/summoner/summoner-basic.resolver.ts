@@ -49,13 +49,20 @@ export class SummonerBasicResolver {
 
   @Mutation((returns) => SummonerBasicModel)
   async basicSummonerInfo(@Args() { name }: NameArgs) {
-    const result = await this.api.getSummoner(name);
-    const summoner = await this.summonerService.updateSummoner(result);
+    try {
+      const result = await this.api.getSummoner(name);
+      if (!result) {
+        throw new Error('not exist');
+      }
+      const summoner = await this.summonerService.updateSummoner(result);
 
-    const entries = await this.api.getEntries(summoner.id);
-    await this.leagueEntryService.updateEntries(entries);
+      const entries = await this.api.getEntries(summoner.id);
+      await this.leagueEntryService.updateEntries(entries);
 
-    return summoner;
+      return summoner;
+    } catch (e) {
+      throw new Error(e.message);
+    }
   }
 
   @Mutation((returns) => [SummonerBasicModel])

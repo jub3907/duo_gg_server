@@ -2,9 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ApiService } from 'src/common/api.service';
-import { MatchIdsApiDto } from './dto/match-id.dto';
 import { MatchDetailDto } from './dto/match-detail.dto';
-import { ParticipantService } from '../participant/participant.service';
 import { Match, MatchDocument } from './schema/match.schema';
 
 @Injectable()
@@ -13,7 +11,6 @@ export class MatchService {
     @InjectModel(Match.name)
     private readonly MatchModel: Model<MatchDocument>,
     private readonly api: ApiService,
-    private readonly participantService: ParticipantService,
   ) {}
 
   async create(dto: MatchDetailDto) {

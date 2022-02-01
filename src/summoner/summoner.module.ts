@@ -14,7 +14,6 @@ import { CommentService } from './comment.service';
     MongooseModule.forFeatureAsync([
       { name: Summoner.name, useFactory: () => SummonerSchema },
     ]),
-    // MasteryModule,
     LeagueEntryModule,
   ],
   providers: [

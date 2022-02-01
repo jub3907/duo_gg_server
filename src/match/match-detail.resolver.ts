@@ -1,14 +1,4 @@
-import {
-  Args,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
-import { extend } from '@nestjs/graphql/dist/utils';
-import { SummonerService } from 'src/summoner/summoner.service';
-import { ParticipantDto } from '../participant/dto/participant.dto';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { MatchBaseResolver } from './match-base.resolver';
 import { MatchService } from './match.service';
 import { MatchDetailModel } from './model/match-detail.model';
@@ -18,10 +8,7 @@ import { MatchIdArgs } from 'src/common/args/match-id.args';
 
 @Resolver((of) => MatchDetailModel)
 export class MatchDetailResolver extends MatchBaseResolver(MatchDetailModel) {
-  constructor(
-    private readonly matchService: MatchService,
-    private readonly summonerService: SummonerService,
-  ) {
+  constructor(private readonly matchService: MatchService) {
     super();
   }
 
