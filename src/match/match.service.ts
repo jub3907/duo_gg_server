@@ -43,7 +43,7 @@ export class MatchService {
         matchId: dto.matchId,
       },
       dto,
-      { upsert: true },
+      { new: true, upsert: true },
     );
   }
 

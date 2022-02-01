@@ -76,7 +76,7 @@ export class LeagueEntryService {
       {
         ...dto,
       },
-      { upsert: true },
+      { new: true, upsert: true },
     );
   }
 }

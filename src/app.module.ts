@@ -14,7 +14,9 @@ import { PostModule } from './post/post.module';
 const whitelist = [
   undefined,
   'http://localhost:3000',
-  'http://http://112.171.82.107:3000/',
+  'http://112.171.82.107:3000/',
+  'http://112.171.82.107:5000/',
+  'http://3.36.31.37:5000',
 ];
 
 const corsOrigin = function (origin: any, callback: any) {
@@ -33,6 +35,7 @@ const corsOrigin = function (origin: any, callback: any) {
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env.development',
+      ignoreEnvFile: process.env.NODE_ENV === 'production',
       load: [configuration],
     }),
     MongooseModule.forRootAsync({

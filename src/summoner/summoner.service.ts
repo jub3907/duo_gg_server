@@ -30,7 +30,7 @@ export class SummonerService {
         accountId: dto.accountId,
       },
       { ...dto },
-      { upsert: true },
+      { new: true, upsert: true },
     );
   }
 
