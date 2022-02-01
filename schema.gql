@@ -1,0 +1,168 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CommentCreateInput {
+  nickname: String!
+  password: String!
+  text: String!
+}
+
+input CommentDeleteInput {
+  id: String!
+  password: String!
+  summonerName: String!
+}
+
+type CommentModel {
+  _id: ID!
+  createdAt: Float!
+  nickname: String!
+  text: String!
+}
+
+type MasteryModel {
+  championId: Float!
+  championLevel: Float!
+  championPoints: Float!
+  iconPath: String!
+  lastPlayTime: Float!
+}
+
+type MatchBasicModel {
+  gameCreation: Float!
+  gameDuration: Float!
+  matchId: String!
+  matchType: String!
+  participants: [ParticipantBasicModel!]!
+  puuid: String!
+  summonerInGameData: ParticipantModel!
+}
+
+type MatchDetailModel {
+  blue: [ParticipantModel!]!
+  gameCreation: Float!
+  gameDuration: Float!
+  matchId: String!
+  matchType: String!
+  red: [ParticipantModel!]!
+}
+
+type Mutation {
+  basicSummonerInfo(name: String!): SummonerBasicModel!
+  createComment(input: CommentCreateInput!, name: String!): CommentModel!
+  createPost(post: PostCreateInput!): PostModel!
+  deleteComment(input: CommentDeleteInput!): Boolean!
+  matchBuild(matchId: String!, puuid: String!): TimelineModel!
+  ranking: [SummonerBasicModel!]!
+  recentMatches(count: Float!, name: String!): [MatchBasicModel!]!
+  updateChampionData(version: String!): Boolean!
+  updateIconData(version: String!): Boolean!
+  updateItemData(version: String!): Boolean!
+  updateRuneData(version: String!): Boolean!
+  updateSummonerData(version: String!): Boolean!
+}
+
+type ParticipantBasicModel {
+  championIconPath: String!
+  participantId: Float!
+  puuid: String!
+  summonerName: String!
+}
+
+type ParticipantItemSpellModel {
+  iconPath: String!
+  id: Float!
+  index: Float!
+  type: String!
+}
+
+type ParticipantModel {
+  assists: Float!
+  baronKills: Float!
+  champLevel: Float!
+  championIconPath: String!
+  championId: Float!
+  deaths: Float!
+  dragonKills: Float!
+  goldEarned: Float!
+  individualPosition: String!
+  items: [ParticipantItemSpellModel!]!
+  kills: Float!
+  participantId: Float!
+  perks: ParticipantPerkModel!
+  puuid: String!
+  summonerName: String!
+  summoners: [ParticipantItemSpellModel!]!
+  teamId: Float!
+  totalDamageDealtToChampions: Float!
+  totalDamageTaken: Float!
+  totalMinionsKilled: Float!
+  turretKills: Float!
+  visionWardsBoughtInGame: Float!
+  wardsKilled: Float!
+  wardsPlaced: Float!
+  win: Boolean!
+}
+
+type ParticipantPerkModel {
+  defense: Float!
+  flex: Float!
+  offense: Float!
+  primarySelections: [String!]!
+  primaryStyle: String!
+  subSelections: [String!]!
+  subStyle: String!
+}
+
+input PostCreateInput {
+  name: String!
+  queueType: String!
+  role: String!
+  text: String!
+  tier: String!
+}
+
+type PostModel {
+  createdAt: Float!
+  name: String!
+  text: String!
+  title: String!
+}
+
+type Query {
+  comments(count: Float!, name: String!): [CommentModel!]!
+  mastery(count: Float!, summonerId: String!): [MasteryModel!]!
+  matchDetail(matchId: String!): MatchDetailModel!
+  posts(createdAt: Float!, limit: Float!): [PostModel!]!
+}
+
+type SummonerBasicModel {
+  freeRank: SummonerEntryModel
+  iconPath: String!
+  id: String!
+  name: String!
+  profileIconId: Float!
+  puuid: String!
+  soleRank: SummonerEntryModel
+  summonerLevel: Float!
+  updatedAt: Float!
+}
+
+type SummonerEntryModel {
+  leaguePoints: Float!
+  losses: Float!
+  rank: String!
+  tier: String!
+  wins: Float!
+}
+
+type TimelineItemModel {
+  iconPathes: [String!]!
+  timestamp: Float!
+}
+
+type TimelineModel {
+  items: [TimelineItemModel!]!
+  skills: [Float!]!
+}
