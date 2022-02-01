@@ -48,7 +48,7 @@ const corsOrigin = function (origin: any, callback: any) {
     }),
 
     GraphQLModule.forRoot({
-      path: '/graphql',
+      path: '/',
       autoSchemaFile: 'schema.gql',
       playground: process.env.NODE_ENV === 'development',
       debug: process.env.NODE_ENV === 'development',
